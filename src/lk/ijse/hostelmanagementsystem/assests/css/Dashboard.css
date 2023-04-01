@@ -1,0 +1,7 @@
+.DashBord-button{
+    -fx-background-color: linear-gradient(to left,#007bff, #ffff);
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-fill: black;
+    -fx-background-radius: 10;
+}
