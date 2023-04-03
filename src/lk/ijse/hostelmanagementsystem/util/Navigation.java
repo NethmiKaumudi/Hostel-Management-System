@@ -9,8 +9,9 @@ import java.io.IOException;
 
 public class Navigation {
     private static AnchorPane pane;
+
     public static void navigate(Routes routes, AnchorPane pane) throws IOException {
-        Navigation.pane=pane;
+        Navigation.pane = pane;
         Navigation.pane.getChildren().clear();
         Stage window = (Stage) Navigation.pane.getScene().getWindow();
 
@@ -23,6 +24,11 @@ public class Navigation {
                 window.setTitle("Student Form");
                 initUI("StudentSaveForm.fxml");
                 break;
+            case ROOMFORM:
+                window.setTitle("Room Form");
+                initUI("RoomForm.fxml");
+                break;
+
 
 
             default:

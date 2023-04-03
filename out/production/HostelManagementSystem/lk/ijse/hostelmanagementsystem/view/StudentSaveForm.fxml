@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="pane" prefHeight="991.0" prefWidth="1419.0" style="-fx-background-color: #4538E0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelmanagementsystem.StudentSaveFormController">
+<AnchorPane id="pane" fx:id="pane" prefHeight="991.0" prefWidth="1419.0" style="-fx-background-color: #4538E0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelmanagementsystem.StudentSaveFormController">
    <children>
       <JFXTextField focusColor="WHITE" layoutX="144.0" layoutY="133.0" prefHeight="31.0" prefWidth="259.0" text="Student Id" unFocusColor="BLACK" />
       <JFXTextField focusColor="WHITE" layoutX="144.0" layoutY="193.0" prefHeight="31.0" prefWidth="259.0" text="Student Name" unFocusColor="BLACK" />
