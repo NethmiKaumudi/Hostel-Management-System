@@ -1,19 +1,21 @@
 package lk.ijse.hostelmanagementsystem.dto;
 
-import java.util.Date;
+import lk.ijse.hostelmanagementsystem.entity.Student;
+
+import java.time.LocalDate;
 
 public class StudentDTO {
     private String studentId;
     private String name;
     private String address;
     private String contactNo;
-    private Date dob;
+    private LocalDate dob;
     private String gender;
 
     public StudentDTO() {
     }
 
-    public StudentDTO(String studentId, String name, String address, String contactNo, Date dob, String gender) {
+    public StudentDTO(String studentId, String name, String address, String contactNo, LocalDate dob, String gender) {
         this.studentId = studentId;
         this.name = name;
         this.address = address;
@@ -54,11 +56,11 @@ public class StudentDTO {
         this.contactNo = contactNo;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -80,5 +82,16 @@ public class StudentDTO {
                 ", dob=" + dob +
                 ", gender='" + gender + '\'' +
                 '}';
+    }
+
+    public Student toEntity() {
+        Student student = new Student();
+        student.setStudentId(this.studentId);
+        student.setName(this.name);
+        student.setAddress(this.address);
+        student.setContactNo(this.contactNo);
+        student.setDob(this.dob);
+        student.setGender(this.gender);
+        return student;
     }
 }

@@ -1,0 +1,9 @@
+.pane{
+    -fx-background-color: linear-gradient(to left,#007bff, #ffff);
+
+}
+.button{
+    -fx-background-color: linear-gradient(to left,black, #ffff);
+    -fx-border-color: black;
+
+}

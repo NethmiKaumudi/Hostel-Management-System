@@ -1,9 +1,9 @@
 package lk.ijse.hostelmanagementsystem.repository.impl;
 
 import com.mysql.cj.xdevapi.Session;
-import lk.ijse.hostelmanagementsystem.entity.Room;
+import lk.ijse.hostelmanagementsystem.repository.RoomRepository;
 
-public class RoomRepositoryimpl {
+public class RoomRepositoryimpl implements RoomRepository {
     private Session session;
     private static RoomRepositoryimpl roomRepositoryimpl;
 

@@ -1,19 +1,27 @@
 package lk.ijse.hostelmanagementsystem.entity;
 
-import java.util.Date;
+import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
+@Entity
 public class Student {
+    @Id
+    @Column(name = "sId", columnDefinition = "VARCHAR(64)")
     private String studentId;
     private String name;
     private String address;
     private String contactNo;
-    private Date dob;
+    private LocalDate dob;
     private String gender;
 
     public Student() {
     }
 
-    public Student(String studentId, String name, String address, String contactNo, Date dob, String gender) {
+    public Student(String studentId, String name, String address, String contactNo, LocalDate dob, String gender) {
         this.studentId = studentId;
         this.name = name;
         this.address = address;
@@ -54,11 +62,11 @@ public class Student {
         this.contactNo = contactNo;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -80,5 +88,17 @@ public class Student {
                 ", dob=" + dob +
                 ", gender='" + gender + '\'' +
                 '}';
+    }
+
+    public StudentDTO toDto() {
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setStudentId(this.studentId);
+        studentDTO.setName(this.name);
+        studentDTO.setAddress(this.address);
+        studentDTO.setContactNo(this.contactNo);
+        studentDTO.setDob(this.dob);
+        studentDTO.setGender(this.gender);
+
+        return studentDTO;
     }
 }

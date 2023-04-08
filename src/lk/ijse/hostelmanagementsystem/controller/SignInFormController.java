@@ -1,4 +1,4 @@
 package lk.ijse.hostelmanagementsystem.controller;
 
-public class ChangeFormController {
+public class SignInFormController {
 }
