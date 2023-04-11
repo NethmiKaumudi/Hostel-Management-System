@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.hostelmanagementsystem.controller.SettingController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="pane" prefHeight="991.0" prefWidth="1456.0" style="-fx-background-color: #0C73ED;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelmanagementsystem.controller.SettingController">
+   <children>
+      <AnchorPane layoutX="304.0" layoutY="100.0" onKeyReleased="#txtrePassWordKeyTypeOnAction" prefHeight="840.0" prefWidth="910.0" style="-fx-background-color: white;">
+         <children>
+            <Separator layoutX="46.0" layoutY="79.0" prefHeight="7.0" prefWidth="606.0" style="-fx-background-color: black;" />
+            <Label layoutX="101.0" layoutY="44.0" text="Settings">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="66.0" fitWidth="37.0" layoutX="58.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/images/setting.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="txtnewUserName" layoutX="187.0" layoutY="219.0" onAction="#txtUserNameOnAction" prefHeight="59.0" prefWidth="495.0" style="-fx-background-color: blue;" />
+            <JFXTextField fx:id="txtNewPassWord" layoutX="187.0" layoutY="358.0" prefHeight="59.0" prefWidth="495.0" style="-fx-background-color: blue;" />
+            <JFXTextField fx:id="txtReNewPassWord" layoutX="187.0" layoutY="500.0" prefHeight="59.0" prefWidth="495.0" style="-fx-background-color: blue;" />
+            <JFXButton layoutX="312.0" layoutY="647.0" onAction="#btnchangeOnAction" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: black;" text="Save Changes" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="191.0" layoutY="176.0" text="New User Name:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="191.0" layoutY="316.0" text="Enter New Password :">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblnewUserName" layoutX="191.0" layoutY="281.0" prefHeight="35.0" prefWidth="475.0" />
+            <Label fx:id="lblnewPassWord" layoutX="186.0" layoutY="429.0" prefHeight="35.0" prefWidth="475.0" />
+            <Label fx:id="lblrenewPassword" layoutX="191.0" layoutY="582.0" prefHeight="35.0" prefWidth="475.0" />
+            <Label layoutX="191.0" layoutY="464.0" text="Re-Enter Your Password">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-import static javafx.application.Application.launch;
+
 
 public class AppInitializer extends Application {
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ launch(args);
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-            URL resource = this.getClass().getResource("/lk/ijse/hostelmanagementsystem/view/LoginForm.fxml");
+            URL resource = this.getClass().getResource("/lk/ijse/hostelmanagementsystem/view/RoomForm.fxml");
             Parent window = FXMLLoader.load(resource);
             Scene scene = new Scene(window);
             primaryStage.setScene(scene);

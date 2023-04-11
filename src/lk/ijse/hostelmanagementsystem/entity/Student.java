@@ -2,12 +2,14 @@ package lk.ijse.hostelmanagementsystem.entity;
 
 import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
+
 public class Student {
     @Id
     @Column(name = "sId", columnDefinition = "VARCHAR(64)")
@@ -17,17 +19,20 @@ public class Student {
     private String contactNo;
     private LocalDate dob;
     private String gender;
+    @OneToMany(mappedBy = "students", fetch = FetchType.EAGER)
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Student() {
     }
 
-    public Student(String studentId, String name, String address, String contactNo, LocalDate dob, String gender) {
+    public Student(String studentId, String name, String address, String contactNo, LocalDate dob, String gender, List<Reservation> reservations) {
         this.studentId = studentId;
         this.name = name;
         this.address = address;
         this.contactNo = contactNo;
         this.dob = dob;
         this.gender = gender;
+        this.setReservations(reservations);
     }
 
     public String getStudentId() {
@@ -100,5 +105,13 @@ public class Student {
         studentDTO.setGender(this.gender);
 
         return studentDTO;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

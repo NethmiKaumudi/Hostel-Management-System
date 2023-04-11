@@ -7,6 +7,6 @@ public interface CrudRepository<T, ID> extends SuperRepository {
 
     public void update(T entity);
 
-    public T get(ID sId);
+    public T get(ID Id);
 
 }

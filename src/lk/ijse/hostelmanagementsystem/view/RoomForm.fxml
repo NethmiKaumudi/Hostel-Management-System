@@ -7,50 +7,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="pane" fx:id="pane" prefHeight="991.0" prefWidth="1840.0" style="-fx-background-color: #4538E0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelmanagementsystem.controller.StudentSaveFormController.StudentSaveFormController">
+<AnchorPane id="pane" fx:id="pane" prefHeight="991.0" prefWidth="1840.0" style="-fx-background-color: #3330BE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelmanagementsystem.controller.RoomFormController">
    <children>
-      <TableView layoutX="636.0" layoutY="151.0" prefHeight="737.0" prefWidth="1265.0">
+      <TableView fx:id="tblRoom" layoutX="636.0" layoutY="151.0" prefHeight="737.0" prefWidth="1265.0">
          <columns>
-            <TableColumn prefWidth="155.0" text="Room Type Id" />
-            <TableColumn prefWidth="245.0" text="Type" />
-            <TableColumn prefWidth="288.0" text="Key Money" />
-            <TableColumn prefWidth="288.0" text="Quantity" />
-            <TableColumn prefWidth="260.0" text="Option" />
+            <TableColumn fx:id="colRoomId" prefWidth="155.0" text="Room Type Id" />
+            <TableColumn fx:id="colType" prefWidth="245.0" text="Type" />
+            <TableColumn fx:id="colKeyMoney" prefWidth="469.0" text="Key Money" />
+            <TableColumn fx:id="colQty" prefWidth="395.0" text="Quantity" />
          </columns>
       </TableView>
-      <JFXButton layoutX="248.0" layoutY="68.0" prefHeight="31.0" prefWidth="200.0" style="-fx-border-color: White; -fx-background-color: black;" text="+Add New Room" textFill="WHITE" />
-      <JFXButton layoutX="403.0" layoutY="256.0" onAction="#savebtnOnAction" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: black;" text="Save" textFill="WHITE">
+      <JFXButton layoutX="248.0" layoutY="68.0" onAction="#AddbtnOnAction" prefHeight="31.0" prefWidth="200.0" style="-fx-border-color: White; -fx-background-color: black;" text="+Add New Room" textFill="WHITE" />
+      <JFXButton fx:id="btnSave" layoutX="403.0" layoutY="256.0" onAction="#savebtnOnAction" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: black;" text="Save" textFill="WHITE">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></JFXButton>
-      <JFXButton layoutX="403.0" layoutY="324.0" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: black;" text="Update" textFill="WHITE" />
-      <TextField layoutX="666.0" layoutY="61.0" prefHeight="47.0" prefWidth="439.0" promptText="Seacrch" />
-      <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="1060.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assests/images/search.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="1359.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reserved Rooms:" wrappingWidth="126.27734375">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Text>
-      <Label layoutX="1513.0" layoutY="51.0" text="0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <JFXButton layoutX="403.0" layoutY="385.0" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: red;" text="Delete" textFill="WHITE" />
-      <JFXTextField fx:id="txtRoomId" layoutX="112.0" layoutY="233.0" onAction="#txtRoomIdOnAction" prefHeight="31.0" prefWidth="249.0" promptText="Room Type Id" />
-      <JFXComboBox layoutX="112.0" layoutY="309.0" prefHeight="31.0" prefWidth="249.0" promptText="Type" />
-      <JFXComboBox layoutX="112.0" layoutY="370.0" prefHeight="31.0" prefWidth="249.0" promptText="Key Money" />
-      <JFXTextField layoutX="112.0" layoutY="445.0" prefHeight="31.0" prefWidth="249.0" promptText="Quantity" />
+      <JFXButton fx:id="btnUpdate" layoutX="403.0" layoutY="324.0" onAction="#updatebtnOnAction" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: black;" text="Update" textFill="WHITE" />
+      <JFXButton fx:id="btnDelete" layoutX="403.0" layoutY="385.0" onAction="#deletebtnOnAction" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: red;" text="Delete" textFill="WHITE" />
+      <JFXComboBox fx:id="cmbRoomType" focusColor="#f2f2f2" layoutX="113.0" layoutY="309.0" prefHeight="31.0" prefWidth="249.0" promptText="Type" />
+      <JFXTextField fx:id="txtQuantity" focusColor="WHITE" layoutX="112.0" layoutY="447.0" onKeyReleased="#txtqtyKeyTypedOnAction" prefHeight="31.0" prefWidth="249.0" promptText="Quantity" />
+      <JFXTextField fx:id="txtKeyMoney" focusColor="#f8f8f8" layoutX="112.0" layoutY="384.0" onKeyReleased="#txtkeyMoneyKeyTypedOnAction" prefHeight="31.0" prefWidth="249.0" promptText="Key Money" />
+      <JFXComboBox fx:id="cmbRoomTypeId" focusColor="#f2f2f2" layoutX="112.0" layoutY="257.0" onAction="#cmbRoomTypeIdOnAction" prefHeight="31.0" prefWidth="249.0" promptText="Type" />
+      <Label fx:id="lblKeyMoney" layoutX="110.0" layoutY="426.0" prefHeight="21.0" prefWidth="256.0" />
+      <Label fx:id="lblQuantity" layoutX="109.0" layoutY="496.0" prefHeight="21.0" prefWidth="256.0" />
    </children>
 </AnchorPane>

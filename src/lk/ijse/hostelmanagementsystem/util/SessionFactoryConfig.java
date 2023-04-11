@@ -1,13 +1,13 @@
 package lk.ijse.hostelmanagementsystem.util;
 
+import lk.ijse.hostelmanagementsystem.entity.Reservation;
+import lk.ijse.hostelmanagementsystem.entity.Room;
 import lk.ijse.hostelmanagementsystem.entity.Student;
+import lk.ijse.hostelmanagementsystem.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import java.io.IOException;
-import java.util.Properties;
 
 public class SessionFactoryConfig {
     private static SessionFactoryConfig factoryConfiguration;
@@ -18,6 +18,9 @@ public class SessionFactoryConfig {
         sessionFactory = new Configuration()
                 .mergeProperties(Utility.getProperties())
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Room.class)
+                .addAnnotatedClass(Reservation.class)
+                .addAnnotatedClass(User.class)
                 .buildSessionFactory();
     }
 

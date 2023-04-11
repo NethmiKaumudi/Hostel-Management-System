@@ -5,6 +5,7 @@ import lk.ijse.hostelmanagementsystem.repository.StudentRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.util.List;
 
 public class StudentRepositoryimpl implements StudentRepository {
@@ -22,12 +23,14 @@ public class StudentRepositoryimpl implements StudentRepository {
 
     @Override
     public String Save(Student entity) {
+
         return (String) session.save(entity);
+
     }
 
     @Override
     public void delete(Student student) {
-         session.delete(student);
+        session.delete(student);
     }
 
     @Override
@@ -44,13 +47,10 @@ public class StudentRepositoryimpl implements StudentRepository {
     public Student get(String sId) {
 //        Student student = session.get(Student.class, sId);
 //        return (List<Student>) student;
-        return session.get(Student.class,sId);
+        return session.get(Student.class, sId);
 
 
     }
-//    public void update(Customer customer) {
-//        session.update(customer);
-//    }
 
     @Override
     public List<Student> getAllStudents() {
@@ -59,5 +59,21 @@ public class StudentRepositoryimpl implements StudentRepository {
         List list = query.list();
         session.close();
         return list;
+    }
+
+    public List<String> getNewId() {
+//        return studentService.generateNewId();
+        String sql="SELECT sId FROM student ORDER BY sId DESC LIMIT 1";
+        return session.createSQLQuery(sql).list();
+    }
+
+    //    @Override
+//    public String getStudentName(String id) throws IOException {
+//        return StudentService.getName(id);
+//    }
+    public List<String> getAllStudentIds() throws IOException {
+        String hql="SELECT studentId FROM Student";
+        return session.createQuery(hql).list();
+
     }
 }

@@ -28,7 +28,14 @@ public class Navigation {
                 window.setTitle("Room Form");
                 initUI("RoomForm.fxml");
                 break;
-
+            case RESERVATIONFORM:
+                window.setTitle("Reservation Form");
+                initUI("ReservationForm.fxml");
+                break;
+            case STUDENTADDFORM:
+                window.setTitle("Student add Form");
+                initUI("StudentAddForm.fxml");
+                break;
 
 
             default:

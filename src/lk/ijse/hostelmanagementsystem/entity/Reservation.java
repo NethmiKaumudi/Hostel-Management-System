@@ -1,23 +1,36 @@
 package lk.ijse.hostelmanagementsystem.entity;
 
+import lk.ijse.hostelmanagementsystem.dto.ReservationDTO;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
+@Entity(name = "reservation")
 public class Reservation {
+    @Id
+    @Column(name = "res_id", columnDefinition = "VARCHAR(64)")
     private String reservationId;
     private Date date;
-    private String studentId;
-    private String roomTypeId;
     private String status;
+
+    @ManyToOne
+    private Student students;
+
+    @ManyToOne
+    private Room rooms;
 
     public Reservation() {
     }
 
-    public Reservation(String reservationId, Date date, String studentId, String roomTypeId, String status) {
+    public Reservation(String reservationId, Date date, String status, Student students, Room rooms) {
         this.reservationId = reservationId;
         this.date = date;
-        this.studentId = studentId;
-        this.roomTypeId = roomTypeId;
         this.status = status;
+        this.students = students;
+        this.rooms = rooms;
     }
 
     public String getReservationId() {
@@ -36,22 +49,6 @@ public class Reservation {
         this.date = date;
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getRoomTypeId() {
-        return roomTypeId;
-    }
-
-    public void setRoomTypeId(String roomTypeId) {
-        this.roomTypeId = roomTypeId;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -60,14 +57,31 @@ public class Reservation {
         this.status = status;
     }
 
+    public Student getStudents() {
+        return students;
+    }
+
+    public void setStudents(Student students) {
+        this.students = students;
+    }
+
+    public Room getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Room rooms) {
+        this.rooms = rooms;
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +
                 "reservationId='" + reservationId + '\'' +
                 ", date=" + date +
-                ", studentId='" + studentId + '\'' +
-                ", roomTypeId='" + roomTypeId + '\'' +
                 ", status='" + status + '\'' +
+                ", students=" + students +
+                ", rooms=" + rooms +
                 '}';
     }
+
 }

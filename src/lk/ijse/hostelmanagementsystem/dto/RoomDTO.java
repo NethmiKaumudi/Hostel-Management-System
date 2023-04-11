@@ -1,5 +1,7 @@
 package lk.ijse.hostelmanagementsystem.dto;
 
+import lk.ijse.hostelmanagementsystem.entity.Room;
+
 public class RoomDTO {
     private String RoomTypeId;
     private String type;
@@ -15,6 +17,7 @@ public class RoomDTO {
         this.keyMoney = keyMoney;
         this.qty = qty;
     }
+
 
     public String getRoomTypeId() {
         return RoomTypeId;
@@ -56,5 +59,14 @@ public class RoomDTO {
                 ", keyMoney='" + keyMoney + '\'' +
                 ", qty=" + qty +
                 '}';
+    }
+
+    public Room toEntity() {
+        Room room = new Room();
+        room.setRoomTypeId(this.RoomTypeId);
+        room.setType(this.type);
+        room.setKeyMoney(this.keyMoney);
+        room.setQty(this.qty);
+        return room;
     }
 }
