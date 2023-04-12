@@ -24,7 +24,7 @@
                   <Image url="@../assests/images/logout%20icon.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="6.0" layoutY="204.0" onAction="#btnStudentOnAction" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
+            <JFXButton layoutX="6.0" layoutY="180.0" onAction="#btnStudentOnAction" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
                <graphic>
                   <GridPane prefHeight="66.0" prefWidth="328.0">
                     <columnConstraints>
@@ -52,7 +52,7 @@
                   </GridPane>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="317.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
+            <JFXButton layoutX="6.0" layoutY="280.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
                <graphic>
                   <GridPane prefHeight="66.0" prefWidth="328.0">
                      <columnConstraints>
@@ -80,7 +80,7 @@
                   </GridPane>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="421.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
+            <JFXButton layoutX="6.0" layoutY="382.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
                <graphic>
                   <GridPane prefHeight="66.0" prefWidth="344.0">
                      <columnConstraints>
@@ -117,7 +117,7 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <JFXButton layoutX="6.0" layoutY="542.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
+            <JFXButton layoutX="6.0" layoutY="482.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
                <graphic>
                   <GridPane prefHeight="66.0" prefWidth="344.0">
                      <columnConstraints>
@@ -145,19 +145,48 @@
                   </GridPane>
                </graphic>
             </JFXButton>
-            <ImageView fitHeight="293.0" fitWidth="363.0" layoutX="1.0" layoutY="749.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assests/images/Hostel%20Iconn.jpeg" />
-               </image>
-            </ImageView>
+            <Text layoutX="6.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Payment Count :" wrappingWidth="276.15234375">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Label fx:id="lblPendingPayment" layoutX="285.0" layoutY="583.0" prefHeight="57.0" prefWidth="48.0" text="0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Text layoutX="11.0" layoutY="751.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Available Students :" wrappingWidth="276.15234375">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Label fx:id="lblTotalStudents" layoutX="288.0" layoutY="732.0" prefHeight="57.0" prefWidth="48.0" text="0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Text layoutX="6.0" layoutY="904.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Rooms Count" wrappingWidth="276.15234375">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Label fx:id="lblAvailableRooms" layoutX="285.0" layoutY="885.0" prefHeight="57.0" prefWidth="48.0" text="0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pane" layoutX="363.0" prefHeight="1051.0" prefWidth="1456.0">
          <children>
-            <TableView layoutX="-1.0" layoutY="193.0" prefHeight="824.0" prefWidth="1557.0">
+            <TableView fx:id="tblKeyMoneyNotPaid" layoutX="-1.0" layoutY="193.0" prefHeight="824.0" prefWidth="1557.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colsId" prefWidth="191.0" text="Student Id" />
+                <TableColumn fx:id="colName" prefWidth="263.0" text="Name" />
+                  <TableColumn fx:id="colAddress" prefWidth="263.0" text="Address" />
+                  <TableColumn fx:id="colContactNo" prefWidth="263.0" text="ContactNo" />
+                  <TableColumn fx:id="colDob" prefWidth="263.0" text="Date Of Birth" />
+                  <TableColumn fx:id="colGender" prefWidth="313.0" text="Gender" />
               </columns>
             </TableView>
             <AnchorPane layoutY="87.0" prefHeight="106.0" prefWidth="1555.0" style="-fx-background-color: white;">

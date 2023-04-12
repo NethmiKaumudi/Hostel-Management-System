@@ -1,11 +1,12 @@
-package lk.ijse.hostelmanagementsystem.repository.impl;
+package lk.ijse.hostelmanagementsystem.repository.custom.impl;
 
+import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
 import lk.ijse.hostelmanagementsystem.entity.Room;
-import lk.ijse.hostelmanagementsystem.entity.Student;
-import lk.ijse.hostelmanagementsystem.repository.RoomRepository;
+import lk.ijse.hostelmanagementsystem.repository.custom.RoomRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoomRepositoryimpl implements RoomRepository {
@@ -49,11 +50,11 @@ public class RoomRepositoryimpl implements RoomRepository {
     public void setSession(Session session) {
         this.session = session;
     }
-    public List<Room> getAllRooms() {
-        String sqlQuery = "FROM room";
+    public ArrayList<Room> getAllRooms() {
+        String sqlQuery = "FROM Room";
         Query query = session.createQuery(sqlQuery);
         List list = query.list();
         session.close();
-        return list;
+        return (ArrayList<Room>) list;
     }
 }

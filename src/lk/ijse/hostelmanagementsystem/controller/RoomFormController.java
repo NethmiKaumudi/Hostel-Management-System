@@ -158,7 +158,7 @@ public class RoomFormController implements Initializable {
         txtQuantity.clear();
         cmbRoomType.getSelectionModel().clearSelection();
         cmbRoomTypeId.requestFocus();
-//        btnSave.setDisable(false);
+        btnSave.setDisable(false);
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
     }

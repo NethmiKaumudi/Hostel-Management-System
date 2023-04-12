@@ -1,5 +1,9 @@
 package lk.ijse.hostelmanagementsystem.dto;
 
+import lk.ijse.hostelmanagementsystem.entity.Reservation;
+import lk.ijse.hostelmanagementsystem.entity.Room;
+import lk.ijse.hostelmanagementsystem.entity.Student;
+
 import java.time.LocalDate;
 
 public class ReservationDTO {
@@ -8,6 +12,7 @@ public class ReservationDTO {
     private String rId;
     private LocalDate date;
     private String status;
+//    private Button delete;
 
     public ReservationDTO() {
     }
@@ -18,6 +23,7 @@ public class ReservationDTO {
         this.rId = rId;
         this.date = date;
         this.status = status;
+
     }
 
     public String getResNo() {
@@ -69,5 +75,21 @@ public class ReservationDTO {
                 ", date=" + date +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+    public Reservation toEntity() {
+        Reservation reservation = new Reservation();
+        reservation.setReservationId(this.resNo);
+//        Date date = reservation.getDate();
+//        reservation. LocalDate.of(date.getYear(), date.getMonth(), date.getDate());
+        reservation.setDate(this.date);
+        Student student = new Student();
+        student.setStudentId(sId);
+        reservation.setStudents(student);
+        Room room = new Room();
+        room.setRoomTypeId(rId);
+        reservation.setRooms(room);
+        reservation.setStatus(this.status);
+        return reservation;
     }
 }

@@ -1,12 +1,13 @@
 package lk.ijse.hostelmanagementsystem.Service.custom;
 
 import javafx.collections.ObservableList;
+import lk.ijse.hostelmanagementsystem.Service.SuperService;
 import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 
 import java.io.IOException;
 import java.util.List;
 
-public interface StudentService {
+public interface StudentService extends SuperService {
     public String save(StudentDTO studentDTO);
 
     public boolean delete(StudentDTO studentDTO);

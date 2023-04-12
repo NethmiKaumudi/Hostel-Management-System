@@ -22,20 +22,15 @@
       <TableView fx:id="tblReservation" layoutX="71.0" layoutY="570.0" prefHeight="318.0" prefWidth="1358.0">
         <columns>
           <TableColumn fx:id="colDate" prefWidth="182.00003051757812" text="Date" />
-          <TableColumn fx:id="colsId" prefWidth="216.0" text="Student Id" />
-            <TableColumn fx:id="colrId" prefWidth="225.0" text="Room Id" />
-            <TableColumn fx:id="colStatus" prefWidth="328.0" text="Status" />
-            <TableColumn fx:id="ColQty" prefWidth="211.0" text="Rooms Availability qty" />
-            <TableColumn fx:id="colOption" prefWidth="194.0" text="Option" />
+            <TableColumn fx:id="colsId" prefWidth="233.0" text="Student Id" />
+            <TableColumn fx:id="colrId" prefWidth="273.0" text="Room Id" />
+            <TableColumn fx:id="colResNo" prefWidth="177.0" text="Reservation No" />
+            <TableColumn fx:id="colStatus" prefWidth="177.0" text="status" />
+            <TableColumn fx:id="colOption" prefWidth="314.0" text="Option" />
         </columns>
       </TableView>
       <JFXTextField fx:id="txtReservationNo" focusColor="#393939" layoutX="1037.0" layoutY="135.0" prefHeight="31.0" prefWidth="287.0" promptText="Reservation No" unFocusColor="#f2f2f2" />
-      <Button layoutX="1076.0" layoutY="496.0" mnemonicParsing="false" onAction="#AddbtnOnAction" prefHeight="31.0" prefWidth="231.0" style="-fx-background-color: white;" text="Add">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="1024.0" layoutY="920.0" mnemonicParsing="false" onAction="#btnRegistrationOnAction" prefHeight="39.0" prefWidth="296.0" style="-fx-background-color: white;" text="Registration">
+      <Button layoutX="1072.0" layoutY="496.0" mnemonicParsing="false" onAction="#AddbtnOnAction" prefHeight="31.0" prefWidth="231.0" style="-fx-background-color: white;" text="Add">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -54,5 +49,10 @@
       <Separator layoutX="98.0" layoutY="453.0" prefHeight="3.0" prefWidth="1348.0" style="-fx-background-color: black;" />
       <Separator layoutX="374.0" layoutY="88.0" prefHeight="3.0" prefWidth="650.0" style="-fx-background-color: black;" />
       <JFXTextField fx:id="txtStudentId" focusColor="#393939" layoutX="118.0" layoutY="227.0" prefHeight="31.0" prefWidth="287.0" promptText="Student ID" unFocusColor="#f2f2f2" />
+      <Button layoutX="886.0" layoutY="910.0" mnemonicParsing="false" onAction="#ReservationbtnOnAction" prefHeight="31.0" prefWidth="231.0" style="-fx-background-color: white;" text="Reserve">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

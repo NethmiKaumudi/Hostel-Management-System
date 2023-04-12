@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,8 +27,10 @@
       <JFXButton fx:id="btnUpdate" layoutX="403.0" layoutY="324.0" onAction="#updatebtnOnAction" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: black;" text="Update" textFill="WHITE" />
       <JFXButton fx:id="btnDelete" layoutX="403.0" layoutY="385.0" onAction="#deletebtnOnAction" prefHeight="33.0" prefWidth="151.0" style="-fx-border-color: White; -fx-background-color: red;" text="Delete" textFill="WHITE" />
       <JFXComboBox fx:id="cmbRoomType" focusColor="#f2f2f2" layoutX="113.0" layoutY="309.0" prefHeight="31.0" prefWidth="249.0" promptText="Type" />
-      <JFXTextField fx:id="txtQuantity" focusColor="WHITE" layoutX="112.0" layoutY="445.0" prefHeight="31.0" prefWidth="249.0" promptText="Quantity" />
-      <JFXTextField fx:id="txtKeyMoney" focusColor="#f8f8f8" layoutX="112.0" layoutY="386.0" prefHeight="31.0" prefWidth="249.0" promptText="Key Money" />
+      <JFXTextField fx:id="txtQuantity" focusColor="WHITE" layoutX="112.0" layoutY="447.0" onKeyReleased="#txtqtyKeyTypedOnAction" prefHeight="31.0" prefWidth="249.0" promptText="Quantity" />
+      <JFXTextField fx:id="txtKeyMoney" focusColor="#f8f8f8" layoutX="112.0" layoutY="384.0" onKeyReleased="#txtkeyMoneyKeyTypedOnAction" prefHeight="31.0" prefWidth="249.0" promptText="Key Money" />
       <JFXComboBox fx:id="cmbRoomTypeId" focusColor="#f2f2f2" layoutX="112.0" layoutY="257.0" onAction="#cmbRoomTypeIdOnAction" prefHeight="31.0" prefWidth="249.0" promptText="Type" />
+      <Label fx:id="lblKeyMoney" layoutX="110.0" layoutY="426.0" prefHeight="21.0" prefWidth="256.0" />
+      <Label fx:id="lblQuantity" layoutX="109.0" layoutY="496.0" prefHeight="21.0" prefWidth="256.0" />
    </children>
 </AnchorPane>

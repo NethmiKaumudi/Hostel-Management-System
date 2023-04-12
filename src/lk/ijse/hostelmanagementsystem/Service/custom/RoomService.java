@@ -1,9 +1,10 @@
 package lk.ijse.hostelmanagementsystem.Service.custom;
 
 import javafx.collections.ObservableList;
+import lk.ijse.hostelmanagementsystem.Service.SuperService;
 import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
 
-public interface RoomService {
+public interface RoomService extends SuperService {
     public String save(RoomDTO roomDTO);
 
     public boolean delete(RoomDTO roomDTO);

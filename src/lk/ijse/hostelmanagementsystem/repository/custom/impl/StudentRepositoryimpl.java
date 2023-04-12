@@ -1,7 +1,7 @@
-package lk.ijse.hostelmanagementsystem.repository.impl;
+package lk.ijse.hostelmanagementsystem.repository.custom.impl;
 
 import lk.ijse.hostelmanagementsystem.entity.Student;
-import lk.ijse.hostelmanagementsystem.repository.StudentRepository;
+import lk.ijse.hostelmanagementsystem.repository.custom.StudentRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -57,7 +57,7 @@ public class StudentRepositoryimpl implements StudentRepository {
         String sqlQuery = "FROM Student";
         Query query = session.createQuery(sqlQuery);
         List list = query.list();
-        session.close();
+//        session.close();
         return list;
     }
 

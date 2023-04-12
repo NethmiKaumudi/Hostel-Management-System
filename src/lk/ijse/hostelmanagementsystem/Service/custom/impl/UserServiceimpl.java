@@ -1,11 +1,10 @@
 package lk.ijse.hostelmanagementsystem.Service.custom.impl;
 
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
-import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 import lk.ijse.hostelmanagementsystem.dto.UserDTO;
 import lk.ijse.hostelmanagementsystem.entity.User;
-import lk.ijse.hostelmanagementsystem.repository.UserRepository;
-import lk.ijse.hostelmanagementsystem.repository.impl.UserRepositoryimpl;
+import lk.ijse.hostelmanagementsystem.repository.custom.UserRepository;
+import lk.ijse.hostelmanagementsystem.repository.custom.impl.UserRepositoryimpl;
 import lk.ijse.hostelmanagementsystem.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

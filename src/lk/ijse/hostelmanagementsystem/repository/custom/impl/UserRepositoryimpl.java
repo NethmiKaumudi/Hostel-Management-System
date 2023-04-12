@@ -1,7 +1,7 @@
-package lk.ijse.hostelmanagementsystem.repository.impl;
+package lk.ijse.hostelmanagementsystem.repository.custom.impl;
 
 import lk.ijse.hostelmanagementsystem.entity.User;
-import lk.ijse.hostelmanagementsystem.repository.UserRepository;
+import lk.ijse.hostelmanagementsystem.repository.custom.UserRepository;
 import org.hibernate.Session;
 
 public class UserRepositoryimpl implements UserRepository {

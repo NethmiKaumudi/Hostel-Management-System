@@ -15,19 +15,19 @@ public class CustomDTO {
     private String type;
     private String key_money;
     private int qty;
-    private String student_id;
+    private String studentId;
     private String name;
     private String address;
-    private String contact_no;
+    private String contactNo;
     private LocalDate dob;
     private String gender;
     private String userName;
     private String password;
 
-    public CustomDTO() {
+    public CustomDTO(String studentId, String name, String address, String contactNo, LocalDate dob, String gender) {
     }
 
-    public CustomDTO(String res_id, LocalDate date, Student student, Room room, String status, String room_type_id, String type, String key_money, int qty, String student_id, String name, String address, String contact_no, LocalDate dob, String gender, String userName, String password) {
+    public CustomDTO(String res_id, LocalDate date, Student student, Room room, String status, String room_type_id, String type, String key_money, int qty, String studentId, String name, String address, String contactNo, LocalDate dob, String gender, String userName, String password) {
         this.res_id = res_id;
         this.date = date;
         this.student = student;
@@ -37,10 +37,10 @@ public class CustomDTO {
         this.type = type;
         this.key_money = key_money;
         this.qty = qty;
-        this.student_id = student_id;
+        this.studentId = studentId;
         this.name = name;
         this.address = address;
-        this.contact_no = contact_no;
+        this.contactNo = contactNo;
         this.dob = dob;
         this.gender = gender;
         this.userName = userName;
@@ -119,12 +119,12 @@ public class CustomDTO {
         this.qty = qty;
     }
 
-    public String getStudent_id() {
-        return student_id;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(String student_id) {
-        this.student_id = student_id;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -143,12 +143,12 @@ public class CustomDTO {
         this.address = address;
     }
 
-    public String getContact_no() {
-        return contact_no;
+    public String getContactNo() {
+        return contactNo;
     }
 
-    public void setContact_no(String contact_no) {
-        this.contact_no = contact_no;
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     public LocalDate getDob() {

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "room")
+@Entity
 public class Room {
     @Id
     @Column(name = "room_id", columnDefinition = "VARCHAR(64)")

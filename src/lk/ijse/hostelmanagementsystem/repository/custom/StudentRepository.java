@@ -1,6 +1,7 @@
-package lk.ijse.hostelmanagementsystem.repository;
+package lk.ijse.hostelmanagementsystem.repository.custom;
 
 import lk.ijse.hostelmanagementsystem.entity.Student;
+import lk.ijse.hostelmanagementsystem.repository.CrudRepository;
 
 import java.io.IOException;
 import java.util.List;

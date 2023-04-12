@@ -17,7 +17,7 @@ launch(args);
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-            URL resource = this.getClass().getResource("/lk/ijse/hostelmanagementsystem/view/RoomForm.fxml");
+            URL resource = this.getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml");
             Parent window = FXMLLoader.load(resource);
             Scene scene = new Scene(window);
             primaryStage.setScene(scene);

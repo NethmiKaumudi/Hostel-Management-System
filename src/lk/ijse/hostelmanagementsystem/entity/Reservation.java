@@ -6,14 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name = "reservation")
 public class Reservation {
     @Id
-    @Column(name = "res_id", columnDefinition = "VARCHAR(64)")
+    @Column( columnDefinition = "VARCHAR(64)")
     private String reservationId;
-    private Date date;
+    private LocalDate date;
     private String status;
 
     @ManyToOne
@@ -25,7 +26,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(String reservationId, Date date, String status, Student students, Room rooms) {
+    public Reservation(String reservationId, LocalDate date, String status, Student students, Room rooms) {
         this.reservationId = reservationId;
         this.date = date;
         this.status = status;
@@ -41,11 +42,11 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

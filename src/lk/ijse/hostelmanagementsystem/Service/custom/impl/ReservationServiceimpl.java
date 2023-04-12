@@ -1,31 +1,35 @@
 package lk.ijse.hostelmanagementsystem.Service.custom.impl;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import lk.ijse.hostelmanagementsystem.Service.custom.ReservationService;
 import lk.ijse.hostelmanagementsystem.dto.ReservationDTO;
-import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
+import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
 import lk.ijse.hostelmanagementsystem.entity.Reservation;
-import lk.ijse.hostelmanagementsystem.entity.Student;
-import lk.ijse.hostelmanagementsystem.repository.ReservationRepository;
-import lk.ijse.hostelmanagementsystem.repository.impl.ReservationRepositoryimpl;
+import lk.ijse.hostelmanagementsystem.entity.Room;
+import lk.ijse.hostelmanagementsystem.repository.custom.ReservationRepository;
+import lk.ijse.hostelmanagementsystem.repository.custom.RoomRepository;
+import lk.ijse.hostelmanagementsystem.repository.custom.impl.ReservationRepositoryimpl;
+import lk.ijse.hostelmanagementsystem.repository.custom.impl.RoomRepositoryimpl;
 import lk.ijse.hostelmanagementsystem.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReservationServiceimpl implements ReservationService {
     private static ReservationService reservationServiceimpl;
 //    RoomRepository roomRepository;
     ReservationRepository reservationRepository;
+    RoomRepository roomRepository;
     private Session session;
 
     private ReservationServiceimpl() {
         reservationRepository= ReservationRepositoryimpl.getInstance();
+        roomRepository= RoomRepositoryimpl.getInstance();
     }
 
     public static ReservationService getInstance() {
@@ -37,7 +41,7 @@ public class ReservationServiceimpl implements ReservationService {
         Session session= SessionFactoryConfig.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
         try {
-            session.save(reservationDTO);
+            session.save(reservationDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -91,39 +95,46 @@ public class ReservationServiceimpl implements ReservationService {
     }
     public int getNotAvailableRoomCount(String rid) {
         Session session = SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
         try {
 //            Query query = session.createQuery("SELECT COUNT(*) FROM Reservation r WHERE r.room.room_type_id=:room_type_id");
             reservationRepository.setSession(session);
-            Query query = reservationRepository.getNotAvailableRoomCount(rid);
-            query.setParameter("room_type_id", rid);
-            Long count = (Long) query.uniqueResult();
-            transaction.commit();
+            Long count = reservationRepository.getNotAvailableRoomCount(rid);
             session.close();
             return Math.toIntExact(count);
         } catch (Exception e) {
-            transaction.rollback();
             session.close();
             e.printStackTrace();
             return 0;
         }
     }
-    public ArrayList<Reservation> getAll() {
+    public List<ReservationDTO> getAll() {
         Session session= SessionFactoryConfig.getInstance().getSession();
-        Transaction transaction=session.beginTransaction();
+        //Transaction transaction=session.beginTransaction();
         try {
-            NativeQuery nativeQuery = session.createSQLQuery("SELECT * FROM reservation");
-            nativeQuery.addEntity(Reservation.class);
-            List<Reservation> reservationList=nativeQuery.list();
-            transaction.commit();
+//            NativeQuery nativeQuery = session.createSQLQuery("SELECT * FROM reservation");
+            reservationRepository.setSession(session);
+            List<Reservation> reservations = reservationRepository.getAll();
+            List<ReservationDTO> list = new ArrayList<>();
+            for (Reservation reservation : reservations) {
+//                Date date = reservation.getDate();
+                list.add(new ReservationDTO(reservation.getReservationId(),reservation.getStudents().getStudentId(),reservation.getRooms().getRoomTypeId(),reservation.getDate(),reservation.getStatus()));
+            }
+            //transaction.commit();
             session.close();
-            return (ArrayList<Reservation>) reservationList;
+            return list;
         } catch (Exception e) {
-            transaction.rollback();
+           // transaction.rollback();
             session.close();
             e.printStackTrace();
             return null;
         }
+    }
+    public RoomDTO getRoom(String room_type_id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+        roomRepository.setSession(session);
+        Room room = roomRepository.get(room_type_id);
+        session.close();
+        return room.toDto();
     }
 
 }
