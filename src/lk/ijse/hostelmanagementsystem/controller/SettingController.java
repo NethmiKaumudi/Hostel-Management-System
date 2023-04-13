@@ -3,24 +3,23 @@ package lk.ijse.hostelmanagementsystem.controller;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
 import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.StudentServiceimpl;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.UserServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.UserDTO;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
 
 public class SettingController {
-    UserDTO userDTO=new UserDTO();
-//    UserService userService;
-UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
+    UserDTO userDTO = new UserDTO();
+    //    UserService userService;
+    private UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
 
     @FXML
     private AnchorPane pane;
@@ -43,7 +42,7 @@ UserService userService = (UserService) ServiceFactory.getServiceFactory().getSe
     @FXML
     private Label lblrenewPassword;
 
-    public void initialize(){
+    public void initialize() {
     }
 
     @FXML
@@ -56,7 +55,7 @@ UserService userService = (UserService) ServiceFactory.getServiceFactory().getSe
         lblnewPassWord.setText(null);
         lblrenewPassword.setText(null);
         if (password.equals(rePassword)) {
-            boolean isUpdated = userService.update(new UserDTO(userName,password));
+            boolean isUpdated = userService.update(new UserDTO(userName, password));
 //            userService.save(userDTO);
             Alert alert;
             if (isUpdated) {
@@ -75,11 +74,12 @@ UserService userService = (UserService) ServiceFactory.getServiceFactory().getSe
         }
 
     }
+
     @FXML
     void txtUserNameOnAction(ActionEvent event) {
 //        studentService = StudentServiceimpl.getInstance();
 //        this.studentDTO = studentService.get(txtsId.getText());
-        userDTO=userService.get(txtnewUserName.getText());
+        userDTO = userService.get(txtnewUserName.getText());
 //        txtsId.setText(studentDTO.getStudentId());
         txtnewUserName.setText(userDTO.getUserName());
         txtNewPassWord.setText(userDTO.getPassWord());
@@ -92,4 +92,10 @@ UserService userService = (UserService) ServiceFactory.getServiceFactory().getSe
 
     }
 
+    @FXML
+    void BackbtnOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
+        stage.centerOnScreen();
+    }
 }

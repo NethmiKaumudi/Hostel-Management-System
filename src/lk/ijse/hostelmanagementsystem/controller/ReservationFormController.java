@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,19 +14,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.ReservationService;
-import lk.ijse.hostelmanagementsystem.Service.custom.StudentService;
 import lk.ijse.hostelmanagementsystem.dto.ReservationDTO;
 import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
+import lk.ijse.hostelmanagementsystem.util.Navigation;
+import lk.ijse.hostelmanagementsystem.util.Routes;
 import lk.ijse.hostelmanagementsystem.view.tm.ReservationTM;
 
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 
 public class ReservationFormController {
 
-    ReservationService reservationService = (ReservationService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.RESERVATIONSERVICE);
+   private ReservationService reservationService = (ReservationService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.RESERVATIONSERVICE);
 //    StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
 
     @FXML
@@ -52,10 +51,10 @@ public class ReservationFormController {
     private TableColumn<?, ?> colDate;
 
     @FXML
-    private TableColumn<?, ?> colsId;
+    private TableColumn<?, ?> colSId;
 
     @FXML
-    private TableColumn<?, ?> colrId;
+    private TableColumn<?, ?> colRId;
 
     @FXML
     private TableColumn<?, ?> colStatus;
@@ -90,8 +89,8 @@ public class ReservationFormController {
 
     private void setCellValueFactory() {
         colDate.setCellValueFactory(new PropertyValueFactory("date"));
-        colsId.setCellValueFactory(new PropertyValueFactory("sId"));
-        colrId.setCellValueFactory(new PropertyValueFactory("rId"));
+        colSId.setCellValueFactory(new PropertyValueFactory("sId"));
+        colRId.setCellValueFactory(new PropertyValueFactory("rId"));
         colResNo.setCellValueFactory(new PropertyValueFactory("resNo"));
         colStatus.setCellValueFactory(new PropertyValueFactory("status"));
 //        ColQty.setCellValueFactory(new PropertyValueFactory("productQty"));
@@ -141,7 +140,7 @@ public class ReservationFormController {
         boolean save = reservationService.save(new ReservationDTO(res_id, student_id, room_id, date, status));
         Alert alert;
         if (save) {
-            tblReservation.getItems().add(new ReservationTM(date, res_id, student_id, room_id, status));
+//            tblReservation.getItems().add(new ReservationTM(date, student_id, room_id, res_id, status));
             alert = new Alert(Alert.AlertType.INFORMATION, "Registration has been successful");
             clearAll();
 //            txtReservationNo.setText(generateId());
@@ -153,17 +152,13 @@ public class ReservationFormController {
     }
 
     private void clearAll() {
-        txtDate.setText(null);
+//        txtDate.setText(null);
         txtReservationNo.setText(null);
         txtStudentId.setText(null);
         cmbrId.getSelectionModel().clearSelection();
         cmbStatus.getSelectionModel().clearSelection();
     }
 
-//    @FXML
-//    void btnRegistrationOnAction(ActionEvent event) {
-//
-//    }
 
     @FXML
     void cmbrIdOnAction(ActionEvent event) {
@@ -180,13 +175,7 @@ public class ReservationFormController {
 
     @FXML
     void newStudentbtnOnAction(ActionEvent event) throws IOException {
-        URL resource = getClass().getResource("/lk/ijse/hostelmanagementsystem/view/StudentAddForm.fxml");
-        Parent load = FXMLLoader.load(resource);
-        Scene scene = new Scene(load);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.resizableProperty().setValue(false);
-        stage.show();
+        Navigation.navigate(Routes.STUDENTADDFORM,pane);
     }
 
 
@@ -198,4 +187,9 @@ public class ReservationFormController {
         txtReservationNo.setText(reservationService.generateNewId());
     }
 
+    @FXML
+    void BackbtnOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
+        stage.centerOnScreen();    }
 }

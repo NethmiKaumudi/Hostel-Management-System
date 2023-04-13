@@ -1,34 +1,23 @@
 package lk.ijse.hostelmanagementsystem.Service.custom.impl;
 
 import lk.ijse.hostelmanagementsystem.Service.custom.QueryService;
-import lk.ijse.hostelmanagementsystem.entity.Custom;
-import lk.ijse.hostelmanagementsystem.projection.CustomDTO;
+import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 import lk.ijse.hostelmanagementsystem.repository.RepositoryFactory;
 import lk.ijse.hostelmanagementsystem.repository.custom.PaymentRepository;
+import lk.ijse.hostelmanagementsystem.util.SessionFactoryConfig;
+import org.hibernate.Session;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class QueryServiceimpl implements QueryService {
 
-    PaymentRepository paymentRepository = (PaymentRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.PAYMENTREPOSITORY);
+    private PaymentRepository paymentRepository = (PaymentRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.PAYMENTREPOSITORY);
 
-//    private Session session;
+    private Session session;
 
-    public ArrayList<CustomDTO> getAllPendingPaymentStudent() {
-        ArrayList<Custom> customEntities = paymentRepository.getAllPendingPaymentStudent();
-        ArrayList<CustomDTO> customDTOS = new ArrayList<>();
-        for (Custom c : customEntities) {
-            customDTOS.add(
-                    new CustomDTO(
-                            c.getStudentId(),
-                            c.getName(),
-                            c.getAddress(),
-                            c.getContactNo(),
-                            c.getDob(),
-                            c.getGender()
-                    )
-            );
-        }
-        return customDTOS;
+    public List<StudentDTO> getAllPendingPaymentStudent() {
+        session = SessionFactoryConfig.getInstance().getSession();
+        paymentRepository.setSession(session);
+        return paymentRepository.getAllPendingPaymentStudent();
     }
 }

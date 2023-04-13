@@ -5,7 +5,7 @@ import lk.ijse.hostelmanagementsystem.Service.SuperService;
 import java.io.IOException;
 
 public interface DashboardService extends SuperService {
-    int getPendingPaymentCount();
+    Long getPendingPaymentCount();
 
     int getRegisteredStudent() throws IOException;
 

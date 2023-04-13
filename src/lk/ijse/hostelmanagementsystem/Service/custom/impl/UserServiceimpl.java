@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 
 public class UserServiceimpl implements UserService {
 
-    UserRepository userRepository = (UserRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.USERSREPOSITORY);
+    private UserRepository userRepository = (UserRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.USERSREPOSITORY);
 
     private Session session;
 

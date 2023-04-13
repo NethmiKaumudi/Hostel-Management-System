@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.DashboardService;
 import lk.ijse.hostelmanagementsystem.Service.custom.QueryService;
-import lk.ijse.hostelmanagementsystem.projection.CustomDTO;
+import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 import lk.ijse.hostelmanagementsystem.util.Navigation;
 import lk.ijse.hostelmanagementsystem.util.Routes;
 import lk.ijse.hostelmanagementsystem.view.tm.StudentTM;
@@ -21,15 +21,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashBoardFormController implements Initializable {
-    //    DashboardService dashboardService;
-//    QueryService queryService;
-    DashboardService dashboardService = (DashboardService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.DASHBOARDSERVICE);
-    QueryService queryService = (QueryService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.QUERYSERVICE);
+
+    private DashboardService dashboardService = (DashboardService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.DASHBOARDSERVICE);
+    private QueryService queryService = (QueryService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.QUERYSERVICE);
 
     @FXML
     private AnchorPane pane2;
@@ -63,8 +62,6 @@ public class DashBoardFormController implements Initializable {
     private TableColumn<?, ?> colGender;
 
     public void initialize(URL location, ResourceBundle resources) {
-//        dashboardService = DashBoardServiceimpl();
-//        queryService = QueryServiceimpl.getInstance();
         setDate();
         runningTime();
         try {
@@ -86,8 +83,8 @@ public class DashBoardFormController implements Initializable {
 
     private void loadAll() {
         tblKeyMoneyNotPaid.getItems().clear();
-        ArrayList<CustomDTO> allStudent = queryService.getAllPendingPaymentStudent();
-        for (CustomDTO c : allStudent) {
+        List<StudentDTO> allStudent = queryService.getAllPendingPaymentStudent();
+        for (StudentDTO c : allStudent) {
             tblKeyMoneyNotPaid.getItems().add(
                     new StudentTM(
                             c.getStudentId(),
@@ -103,6 +100,11 @@ public class DashBoardFormController implements Initializable {
 
     private void setDate() {
         lblDate.setText(String.valueOf(LocalDate.now()));
+    }
+
+    @FXML
+    void LogOutbtnOnAction(ActionEvent event) {
+        System.exit(0);
     }
 
 

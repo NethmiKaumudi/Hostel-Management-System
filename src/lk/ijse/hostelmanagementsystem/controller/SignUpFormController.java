@@ -13,7 +13,6 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.UserServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.UserDTO;
 import lk.ijse.hostelmanagementsystem.util.Navigation;
 import lk.ijse.hostelmanagementsystem.util.Routes;
@@ -24,7 +23,7 @@ import java.util.regex.Pattern;
 
 public class SignUpFormController {
     UserDTO userDTO = new UserDTO();
-    UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
+    private UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
     @FXML
     private AnchorPane pane2;
     @FXML
@@ -56,8 +55,6 @@ public class SignUpFormController {
 
     @FXML
     void SignUpbtnOnAction(ActionEvent event) throws IOException {
-//        String sId = txtsId.getText();
-//        String studentName = txtName.getText();
         if (userNameMatcher.matches()) {
             if (pwMatcher.matches()) {
             }
@@ -75,12 +72,7 @@ public class SignUpFormController {
             new Alert(Alert.AlertType.ERROR, "Not Added!").show();
 
         }
-//        Stage stage = (Stage) pane2.getScene().getWindow();
-//        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
-//        stage.centerOnScreen();
-//        Stage stage2 = (Stage) pane2.getScene().getWindow();
-//        stage2.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/ReservationForm.fxml"))));
-//        stage2.centerOnScreen();
+
         Navigation.navigate(Routes.DASHBOARDFORM,pane2);
 
         clearFields();

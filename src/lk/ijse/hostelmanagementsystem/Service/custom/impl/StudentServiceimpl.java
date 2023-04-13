@@ -17,7 +17,7 @@ import java.util.List;
 public class StudentServiceimpl implements StudentService {
 
 
-    StudentRepository studentRepository = (StudentRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.STUDENTREPOSITORY);
+    private StudentRepository studentRepository = (StudentRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.STUDENTREPOSITORY);
 
     private Session session;
 

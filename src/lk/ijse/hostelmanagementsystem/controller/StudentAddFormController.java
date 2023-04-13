@@ -23,7 +23,7 @@ public class StudentAddFormController {
 
     StudentDTO studentDTO = new StudentDTO();
     //    StudentService studentService = null;
-    StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
+    private StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
 
     @FXML
     private AnchorPane pane;

@@ -1,12 +1,11 @@
 package lk.ijse.hostelmanagementsystem.repository.custom.impl;
 
-import lk.ijse.hostelmanagementsystem.entity.Custom;
+import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 import lk.ijse.hostelmanagementsystem.entity.Reservation;
 import lk.ijse.hostelmanagementsystem.repository.custom.PaymentRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,32 +64,52 @@ public class PaymentRepositoryimpl implements PaymentRepository {
         this.session = session;
     }
 
-    public ArrayList<Custom> getAllPendingPaymentStudent() {
+    public List<StudentDTO> getAllPendingPaymentStudent() {
 //        Session session = FactoryConfiguration.getInstance().getSession();
 //        Transaction transaction = session.beginTransaction();
         try {
 
 
-            Query query = session.createQuery("SELECT s.studentId,s.name,s.address,s.contactNo,s.dob,s.gender FROM\n" +
-                    "Student s INNER JOIN reservation r ON s.studentId=r.Student.studentId WHERE r.status=:status");
+            Query query = session.createQuery("SELECT new  lk.ijse.hostelmanagementsystem.dto.StudentDTO(s.studentId,s.name,s.address,s.contactNo,s.dob,s.gender)\n" +
+                    "FROM Student AS s INNER JOIN reservation AS r ON s.studentId=r.students.studentId\n" +
+                    "WHERE r.status=:status");
             query.setParameter("status", "Pending payment");
-            List<Object[]> list = query.list();
+            List<StudentDTO> list = query.list();
 //            transaction.commit();
             session.close();
-            ArrayList<Custom> customEntities = new ArrayList();
-            for (Object[] o : list) {
-                customEntities.add(
-                        new Custom(
-                                (String) o[0],
-                                (String) o[1],
-                                (String) o[2],
-                                (String) o[3],
-                                (LocalDate) o[4],
-                                (String) o[5])
-                );
-            }
+//            ArrayList<Custom> customEntities = new ArrayList();
+//            for (Object[] o : list) {
+//                customEntities.add(
+//                        new Custom(
+//                                (String) o[0],
+//                                (String) o[1],
+//                                (String) o[2],
+//                                (String) o[3],
+//                                (LocalDate) o[4],
+//                                (String) o[5])
+//                );
+//            }
 
-            return customEntities;
+            return list;
+        } catch (Exception e) {
+//            transaction.rollback()
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public Long getAllPendingPaymentCount() {
+//        Session session = FactoryConfiguration.getInstance().getSession();
+//        Transaction transaction = session.beginTransaction();
+        try {
+
+
+            Query query = session.createQuery("SELECT COUNT(r)\n" +
+                    "FROM reservation AS r\n" +
+                    "WHERE r.status=:status");
+            query.setParameter("status", "Pending payment");
+            Long count = (Long) query.uniqueResult();
+            session.close();
+            return count;
         } catch (Exception e) {
 //            transaction.rollback()
             e.printStackTrace();

@@ -6,7 +6,9 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -15,10 +17,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
 import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.StudentService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.StudentServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
+import lk.ijse.hostelmanagementsystem.util.Navigation;
+import lk.ijse.hostelmanagementsystem.util.Routes;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,8 +38,8 @@ public class StudentSaveFormController implements Initializable {
     public JFXTextField txtCNo;
     public TableView<StudentDTO> tblStudent;
     StudentDTO studentDTO = new StudentDTO();
-//    StudentService studentService;
-StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
+    //    StudentService studentService;
+    private StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
 
     @FXML
     private AnchorPane pane;
@@ -312,8 +316,14 @@ StudentService studentService = (StudentService) ServiceFactory.getServiceFactor
 //            System.out.println(txtUserName.getText());
             txtstudentName.requestFocus();
             txtstudentName.setFocusColor(Paint.valueOf("Red"));
-            lblAddress.setText("invalid Name");
+            lblName.setText("invalid Name");
         }
     }
+
+    @FXML
+    void BackbtnOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
+        stage.centerOnScreen();    }
 
 }

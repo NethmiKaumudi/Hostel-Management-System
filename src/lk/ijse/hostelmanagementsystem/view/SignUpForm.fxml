@@ -9,18 +9,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane2" prefHeight="990.0" prefWidth="1819.0" styleClass="pane" stylesheets="@../assests/css/SignupForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelmanagementsystem.controller.SignUpFormController">
+<AnchorPane fx:id="pane2" prefHeight="990.0" prefWidth="1920.0" styleClass="pane" stylesheets="@../assests/css/SignupForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hostelmanagementsystem.controller.SignUpFormController">
    <children>
       <AnchorPane layoutX="108.0" layoutY="104.0" prefHeight="805.0" prefWidth="1691.0" style="-fx-background-color: white;">
          <children>
             <AnchorPane prefHeight="805.0" prefWidth="852.0" style="-fx-background-color: #0C73ED;">
                <children>
-                  <JFXTextField fx:id="txtUserName" focusColor="WHITE" layoutX="162.0" layoutY="255.0" onKeyReleased="#txtUserNameKeyTypedOnAction" prefHeight="66.0" prefWidth="462.0" promptText="Ex : NethmiKaumudi">
+                  <JFXTextField fx:id="txtUserName" focusColor="WHITE" layoutX="162.0" layoutY="255.0" onKeyReleased="#txtUserNameKeyTypedOnAction" prefHeight="66.0" prefWidth="462.0" promptText="Ex : Kamal">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtPassWord" focusColor="WHITE" layoutX="162.0" layoutY="442.0" onKeyReleased="#txtPasWordKeyTypedOnAction" prefHeight="66.0" prefWidth="462.0" promptText="Ex : Nethu@1234" />
+                  <JFXTextField fx:id="txtPassWord" focusColor="WHITE" layoutX="162.0" layoutY="442.0" onKeyReleased="#txtPasWordKeyTypedOnAction" prefHeight="66.0" prefWidth="462.0" promptText="Ex : Kamal@1456" />
                   <Button layoutX="499.0" layoutY="606.0" mnemonicParsing="false" onAction="#SignUpbtnOnAction" prefHeight="33.0" prefWidth="149.0" text="Sign Up" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -41,8 +41,8 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblUserName" layoutX="159.0" layoutY="348.0" prefHeight="21.0" prefWidth="421.0" text="Label" />
-                  <Label fx:id="lblPassWord" layoutX="162.0" layoutY="547.0" prefHeight="21.0" prefWidth="421.0" text="Label" />
+                  <Label fx:id="lblUserName" layoutX="159.0" layoutY="348.0" prefHeight="21.0" prefWidth="421.0" />
+                  <Label fx:id="lblPassWord" layoutX="162.0" layoutY="547.0" prefHeight="21.0" prefWidth="421.0" />
                </children></AnchorPane>
             <ImageView fitHeight="671.0" fitWidth="771.0" layoutX="892.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                <image>

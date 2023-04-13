@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Student {
     @Id
-    @Column(name = "studentId", columnDefinition = "VARCHAR(64)")
+    @Column(name = "sId", columnDefinition = "VARCHAR(64)")
     private String studentId;
     private String name;
     private String address;

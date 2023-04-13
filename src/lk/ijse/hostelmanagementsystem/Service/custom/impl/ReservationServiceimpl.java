@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationServiceimpl implements ReservationService {
-    RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.ROOMREPOSITORY);
-    ReservationRepository reservationRepository = (ReservationRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.RESERVATIONREPOSITORY);
+    private RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.ROOMREPOSITORY);
+    private ReservationRepository reservationRepository = (ReservationRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.RESERVATIONREPOSITORY);
 
     private Session session;
 

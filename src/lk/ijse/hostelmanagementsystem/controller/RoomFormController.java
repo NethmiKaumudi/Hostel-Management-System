@@ -5,7 +5,9 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -14,10 +16,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
 import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.RoomService;
 import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
+import lk.ijse.hostelmanagementsystem.util.Navigation;
+import lk.ijse.hostelmanagementsystem.util.Routes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -25,8 +31,8 @@ import java.util.regex.Pattern;
 
 public class RoomFormController implements Initializable {
     RoomDTO roomDTO = new RoomDTO();
-//    RoomService roomService;
-RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.ROOMSERVICE);
+    //    RoomService roomService;
+    private RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.ROOMSERVICE);
 
     @FXML
     private AnchorPane pane;
@@ -71,6 +77,7 @@ RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getSe
     private Label lblQuantity;
     private Matcher keyMoneyMatcher;
     private Matcher qtyMatcher;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         getRoomIds();
@@ -120,6 +127,7 @@ RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getSe
             lblQuantity.setText("invalid qty");
         }
     }
+
     private void setData(RoomDTO newValue) {
         if (newValue != null) {
             cmbRoomTypeId.setValue(newValue.getRoomTypeId());
@@ -146,6 +154,8 @@ RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getSe
         cmbRoomType.getSelectionModel().clearSelection();
         txtKeyMoney.clear();
         txtQuantity.clear();
+        lblKeyMoney.setText(null);
+        lblQuantity.setText(null);
     }
 
     @FXML
@@ -181,8 +191,8 @@ RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getSe
 
     @FXML
     void savebtnOnAction(ActionEvent event) {
-        if (keyMoneyMatcher.matches()){
-            if (qtyMatcher.matches()){
+        if (keyMoneyMatcher.matches()) {
+            if (qtyMatcher.matches()) {
 
             }
         }
@@ -221,6 +231,7 @@ RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getSe
         txtKeyMoney.setText(roomDTO.getKeyMoney());
         txtQuantity.setText(String.valueOf(roomDTO.getQty()));
     }
+
     private void initUi() {
         cmbRoomTypeId.setDisable(false);
         cmbRoomType.setDisable(true);
@@ -232,6 +243,7 @@ RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getSe
 
 
     }
+
     @FXML
     void updatebtnOnAction(ActionEvent event) {
 
@@ -258,5 +270,12 @@ RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getSe
 
 
     }
+
+    @FXML
+    void BackbtnOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
+        stage.centerOnScreen();    }
+
 
 }

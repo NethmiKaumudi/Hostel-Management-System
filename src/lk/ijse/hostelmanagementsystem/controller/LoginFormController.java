@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.UserServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.UserDTO;
 import lk.ijse.hostelmanagementsystem.util.Navigation;
 import lk.ijse.hostelmanagementsystem.util.Routes;
@@ -22,7 +21,7 @@ import static javafx.scene.paint.Color.RED;
 public class LoginFormController {
     //    UserDTO userDTO = new UserDTO();
 //    UserService userService;
-    UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
+    private UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
 
     @FXML
     private AnchorPane pane2;
@@ -59,14 +58,9 @@ public class LoginFormController {
             UserDTO user = userService.get(userName);
             if (password.equals(user.getPassWord()) /*|| pswdFildPassword.equals(user.getPassWord())*/) {
                 if (userName.equals(user.getUserName())) {
-//                        Stage stage = (Stage) pane2.getScene().getWindow();
-//                        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
-//                        stage.centerOnScreen();
+
                     Navigation.navigate(Routes.DASHBOARDFORM, pane2);
                 } else {
-//                    txtUserName.requestFocus();
-//                    txtUserName.setFocusColor(RED);
-//                    lblUserName.setText("Username does not match");
                     txtUserName.requestFocus();
                     txtUserName.setFocusColor(RED);
                     lbluserName.setText("Username does not match");
@@ -80,7 +74,6 @@ public class LoginFormController {
             new Alert(Alert.AlertType.CONFIRMATION, "WELCOME!").show();
 
         } catch (Exception e) {
-
             txtUserName.requestFocus();
             txtUserName.setFocusColor(RED);
             txtnShowPassword.requestFocus();
@@ -130,9 +123,7 @@ public class LoginFormController {
 
     @FXML
     void SignUpbtnOnAction(ActionEvent event) throws IOException {
-//        Stage stage = (Stage) pane2.getScene().getWindow();
-//        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/SignUpForm.fxml"))));
-//        stage.centerOnScreen();
+
         Navigation.navigate(Routes.SIGNUPFORM, pane2);
     }
 

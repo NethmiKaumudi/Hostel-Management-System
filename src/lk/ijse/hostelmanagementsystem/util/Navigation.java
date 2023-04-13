@@ -52,6 +52,6 @@ public class Navigation {
 
     private static void initUI(String location) throws IOException {
         Navigation.pane.getChildren().add(FXMLLoader.load(Navigation.class
-                .getResource("/lk/ijse/hostelmanagementsystem/view" + location)));
+                .getResource("/lk/ijse/hostelmanagementsystem/view/" + location)));
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RoomServiceimpl implements RoomService {
 
-    RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.ROOMREPOSITORY);
+    private  RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.ROOMREPOSITORY);
 
     private Session session;
 
