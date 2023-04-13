@@ -3,27 +3,29 @@ package lk.ijse.hostelmanagementsystem.controller;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
 import lk.ijse.hostelmanagementsystem.Service.custom.impl.UserServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.UserDTO;
+import lk.ijse.hostelmanagementsystem.util.Navigation;
+import lk.ijse.hostelmanagementsystem.util.Routes;
 
 import java.io.IOException;
 
 import static javafx.scene.paint.Color.RED;
 
 public class LoginFormController {
-//    UserDTO userDTO = new UserDTO();
-    UserService userService;
+    //    UserDTO userDTO = new UserDTO();
+//    UserService userService;
+    UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
+
     @FXML
-    private AnchorPane pane;
+    private AnchorPane pane2;
 
     @FXML
     private Label lbluserName;
@@ -53,40 +55,39 @@ public class LoginFormController {
         String userName = txtUserName.getText();
 //        String pswdFildPassword = txtShowPassWord.getText();
         clearAll();
-            try {
-                UserDTO user = userService.get(userName);
-                if (password.equals(user.getPassWord()) /*|| pswdFildPassword.equals(user.getPassWord())*/) {
-                    if (userName.equals(user.getUserName())) {
-                        Stage stage = (Stage) pane.getScene().getWindow();
-                        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
-                        stage.centerOnScreen();
-                    } else {
+        try {
+            UserDTO user = userService.get(userName);
+            if (password.equals(user.getPassWord()) /*|| pswdFildPassword.equals(user.getPassWord())*/) {
+                if (userName.equals(user.getUserName())) {
+//                        Stage stage = (Stage) pane2.getScene().getWindow();
+//                        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
+//                        stage.centerOnScreen();
+                    Navigation.navigate(Routes.DASHBOARDFORM, pane2);
+                } else {
 //                    txtUserName.requestFocus();
 //                    txtUserName.setFocusColor(RED);
 //                    lblUserName.setText("Username does not match");
-                        txtUserName.requestFocus();
-                        txtUserName.setFocusColor(RED);
-                        lbluserName.setText("Username does not match");
-                    }
-                } else {
-
                     txtUserName.requestFocus();
                     txtUserName.setFocusColor(RED);
                     lbluserName.setText("Username does not match");
                 }
-                new Alert(Alert.AlertType.CONFIRMATION, "WELCOME!").show();
+            } else {
 
-            } catch (Exception e) {
-
-                    txtUserName.requestFocus();
-                    txtUserName.setFocusColor(RED);
-                    txtnShowPassword.requestFocus();
-                    txtnShowPassword.setFocusColor(RED);
-                    new Alert(Alert.AlertType.WARNING, "Please Enter Username and PassWord First").show();
-                }
+                txtUserName.requestFocus();
+                txtUserName.setFocusColor(RED);
+                lbluserName.setText("Username does not match");
             }
+            new Alert(Alert.AlertType.CONFIRMATION, "WELCOME!").show();
 
+        } catch (Exception e) {
 
+            txtUserName.requestFocus();
+            txtUserName.setFocusColor(RED);
+            txtnShowPassword.requestFocus();
+            txtnShowPassword.setFocusColor(RED);
+            new Alert(Alert.AlertType.WARNING, "Please Enter Username and PassWord First").show();
+        }
+    }
 
 
     public void imgViewOnAction(MouseEvent mouseEvent) {
@@ -97,6 +98,7 @@ public class LoginFormController {
         txtShowPassWord.setText(txtShowPassWord.getText());
         txtShowPassWord.requestFocus();
     }
+
     public void imginvisibleOnAction(MouseEvent mouseEvent) {
         imgVisible.setVisible(true);
         txtShowPassWord.setVisible(false);
@@ -110,8 +112,9 @@ public class LoginFormController {
         txtnShowPassword.requestFocus();
 
     }
+
     public void initialize() {
-        userService = UserServiceimpl.getInstance();
+
 
         imgVisible.setVisible(false);
         txtShowPassWord.setVisible(true);
@@ -127,9 +130,10 @@ public class LoginFormController {
 
     @FXML
     void SignUpbtnOnAction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) pane.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/SignUpForm.fxml"))));
-        stage.centerOnScreen();
+//        Stage stage = (Stage) pane2.getScene().getWindow();
+//        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/SignUpForm.fxml"))));
+//        stage.centerOnScreen();
+        Navigation.navigate(Routes.SIGNUPFORM, pane2);
     }
 
     @FXML

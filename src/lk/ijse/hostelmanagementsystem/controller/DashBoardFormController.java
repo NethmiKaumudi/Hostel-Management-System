@@ -9,11 +9,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.DashboardService;
 import lk.ijse.hostelmanagementsystem.Service.custom.QueryService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.DashBoardServiceimpl;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.QueryServiceimpl;
-import lk.ijse.hostelmanagementsystem.dto.CustomDTO;
+import lk.ijse.hostelmanagementsystem.projection.CustomDTO;
 import lk.ijse.hostelmanagementsystem.util.Navigation;
 import lk.ijse.hostelmanagementsystem.util.Routes;
 import lk.ijse.hostelmanagementsystem.view.tm.StudentTM;
@@ -27,8 +26,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DashBoardFormController implements Initializable {
-    DashboardService dashboardService;
-    QueryService queryService;
+    //    DashboardService dashboardService;
+//    QueryService queryService;
+    DashboardService dashboardService = (DashboardService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.DASHBOARDSERVICE);
+    QueryService queryService = (QueryService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.QUERYSERVICE);
+
     @FXML
     private AnchorPane pane2;
     @FXML
@@ -61,8 +63,8 @@ public class DashBoardFormController implements Initializable {
     private TableColumn<?, ?> colGender;
 
     public void initialize(URL location, ResourceBundle resources) {
-        dashboardService = DashBoardServiceimpl.getInstance();
-        queryService= QueryServiceimpl.getInstance();
+//        dashboardService = DashBoardServiceimpl();
+//        queryService = QueryServiceimpl.getInstance();
         setDate();
         runningTime();
         try {
@@ -103,11 +105,6 @@ public class DashBoardFormController implements Initializable {
         lblDate.setText(String.valueOf(LocalDate.now()));
     }
 
-    @FXML
-    void btnStudentOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Routes.STUDENTSAVEFORM, pane);
-
-    }
 
     private void runningTime() {
         final Thread thread = new Thread(() -> {
@@ -127,7 +124,7 @@ public class DashBoardFormController implements Initializable {
         thread.start();
     }
 
-        private void setLblPendingPayment() {
+    private void setLblPendingPayment() {
         lblPendingPayment.setText(String.valueOf(dashboardService.getPendingPaymentCount()));
     }
 
@@ -138,4 +135,26 @@ public class DashBoardFormController implements Initializable {
     private void setLblRoomCount() {
         lblAvailableRooms.setText(String.valueOf(dashboardService.getRoomCount()));
     }
+
+    @FXML
+    void btnReservationOnAction(ActionEvent event) throws IOException {
+        Navigation.navigate(Routes.RESERVATIONFORM, pane);
+    }
+
+    @FXML
+    void btnRoomOnAction(ActionEvent event) throws IOException {
+        Navigation.navigate(Routes.ROOMFORM, pane);
+    }
+
+    @FXML
+    void btnSettngOnAction(ActionEvent event) throws IOException {
+        Navigation.navigate(Routes.SETTINGFORM, pane);
+    }
+
+    @FXML
+    void btnStudentOnAction(ActionEvent event) throws IOException {
+        Navigation.navigate(Routes.STUDENTSAVEFORM, pane);
+
+    }
+
 }

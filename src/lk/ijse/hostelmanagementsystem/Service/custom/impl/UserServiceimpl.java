@@ -3,24 +3,17 @@ package lk.ijse.hostelmanagementsystem.Service.custom.impl;
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
 import lk.ijse.hostelmanagementsystem.dto.UserDTO;
 import lk.ijse.hostelmanagementsystem.entity.User;
+import lk.ijse.hostelmanagementsystem.repository.RepositoryFactory;
 import lk.ijse.hostelmanagementsystem.repository.custom.UserRepository;
-import lk.ijse.hostelmanagementsystem.repository.custom.impl.UserRepositoryimpl;
 import lk.ijse.hostelmanagementsystem.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class UserServiceimpl implements UserService {
-    private static UserServiceimpl userServiceimpl;
-    UserRepository userRepository;
+
+    UserRepository userRepository = (UserRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.USERSREPOSITORY);
+
     private Session session;
-
-    private UserServiceimpl() {
-        userRepository= UserRepositoryimpl.getInstance();
-    }
-
-    public static UserServiceimpl getInstance() {
-        return userServiceimpl == null ? userServiceimpl = new UserServiceimpl() : userServiceimpl;
-    }
 
     @Override
     public String save(UserDTO userDTO) {
@@ -43,6 +36,7 @@ public class UserServiceimpl implements UserService {
             return null;
         }
     }
+
     public UserDTO get(String userName) {
         session = SessionFactoryConfig.getInstance().getSession();
         userRepository.setSession(session);
@@ -50,6 +44,7 @@ public class UserServiceimpl implements UserService {
         session.close();
         return user.toDto();
     }
+
     public boolean update(UserDTO userDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();

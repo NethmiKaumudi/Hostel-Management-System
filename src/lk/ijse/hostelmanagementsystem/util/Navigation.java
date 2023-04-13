@@ -36,8 +36,14 @@ public class Navigation {
                 window.setTitle("Student add Form");
                 initUI("StudentAddForm.fxml");
                 break;
-
-
+            case SIGNUPFORM:
+                window.setTitle("SignUp Form");
+                initUI("SignUpForm.fxml");
+                break;
+            case SETTINGFORM:
+                window.setTitle("Setting Form");
+                initUI("Setting.fxml");
+                break;
             default:
                 new Alert(Alert.AlertType.ERROR, "Not suitable UI found!").show();
 

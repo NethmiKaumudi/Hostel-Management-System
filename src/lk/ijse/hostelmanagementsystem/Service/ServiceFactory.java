@@ -1,7 +1,7 @@
 package lk.ijse.hostelmanagementsystem.Service;
 
 import lk.ijse.hostelmanagementsystem.Service.custom.DashboardService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.StudentServiceimpl;
+import lk.ijse.hostelmanagementsystem.Service.custom.impl.*;
 import lk.ijse.hostelmanagementsystem.controller.DashBoardFormController;
 
 public class ServiceFactory {
@@ -11,7 +11,7 @@ public class ServiceFactory {
 
     }
 
-    public static ServiceFactory getDaoFactory() {
+    public static ServiceFactory getServiceFactory() {
         if (serviceFactory == null) {
             serviceFactory = new ServiceFactory();
         }
@@ -27,17 +27,17 @@ public class ServiceFactory {
     public SuperService getService(ServiceTypes types) {
         switch (types) {
             case DASHBOARDSERVICE:
-                return new DashboardServiceimpl();
+                return new DashBoardServiceimpl();
             case STUDENTSERVICE:
                 return new StudentServiceimpl();
-            case PAYMENT:
-                return new PaymentDAOimpl();
-            case PAYROLL:
-                return new PayRollDAOimpl();
-            case MATERIALSTOCK:
-                return new MaterialStockDAOimpl();
-            case SIGNUP:
-                return new SignUpDAOimpl();
+            case ROOMSERVICE:
+                return new RoomServiceimpl();
+            case RESERVATIONSERVICE:
+                return new ReservationServiceimpl();
+            case USERSERVICE:
+                return new UserServiceimpl();
+            case QUERYSERVICE:
+                return new QueryServiceimpl();
 
             default:
                 return null;

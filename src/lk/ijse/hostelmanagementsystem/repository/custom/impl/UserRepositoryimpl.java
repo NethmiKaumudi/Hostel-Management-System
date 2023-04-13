@@ -5,16 +5,16 @@ import lk.ijse.hostelmanagementsystem.repository.custom.UserRepository;
 import org.hibernate.Session;
 
 public class UserRepositoryimpl implements UserRepository {
-    private static UserRepositoryimpl userRepositoryimpl;
+//    private static UserRepositoryimpl userRepositoryimpl;
     private Session session;
-
-    private UserRepositoryimpl() {
-
-    }
-
-    public static UserRepositoryimpl getInstance() {
-        return userRepositoryimpl == null ? userRepositoryimpl = new UserRepositoryimpl() : userRepositoryimpl;
-    }
+//
+//    private UserRepositoryimpl() {
+//
+//    }
+//
+//    public static UserRepositoryimpl getInstance() {
+//        return userRepositoryimpl == null ? userRepositoryimpl = new UserRepositoryimpl() : userRepositoryimpl;
+//    }
 
     @Override
     public String Save(User entity) {

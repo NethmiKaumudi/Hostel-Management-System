@@ -13,10 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.ReservationService;
 import lk.ijse.hostelmanagementsystem.Service.custom.StudentService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.ReservationServiceimpl;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.StudentServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.ReservationDTO;
 import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
 import lk.ijse.hostelmanagementsystem.view.tm.ReservationTM;
@@ -27,9 +26,10 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class ReservationFormController {
-    ReservationDTO reservationDTO = new ReservationDTO();
-    ReservationService reservationService;
-    StudentService studentService;
+
+    ReservationService reservationService = (ReservationService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.RESERVATIONSERVICE);
+//    StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
+
     @FXML
     private AnchorPane pane;
 
@@ -77,9 +77,7 @@ public class ReservationFormController {
 
     private ObservableList<ReservationTM> obList = FXCollections.observableArrayList();
 
-    public void initialize() throws IOException {
-        reservationService = ReservationServiceimpl.getInstance();
-        studentService = StudentServiceimpl.getInstance();
+    public void initialize() {
         cmbrId.getItems().addAll(new String[]{"RM-1324", "RM-5467", "RM-7896", "RM-0093"});
         cmbStatus.getItems().addAll(new String[]{"Paid", "Pending payment"});
         setDate();
@@ -88,7 +86,6 @@ public class ReservationFormController {
         setCellValueFactory();
 //
     }
-
 
 
     private void setCellValueFactory() {
@@ -144,7 +141,7 @@ public class ReservationFormController {
         boolean save = reservationService.save(new ReservationDTO(res_id, student_id, room_id, date, status));
         Alert alert;
         if (save) {
-            tblReservation.getItems().add(new ReservationTM(date,res_id,student_id,room_id,status));
+            tblReservation.getItems().add(new ReservationTM(date, res_id, student_id, room_id, status));
             alert = new Alert(Alert.AlertType.INFORMATION, "Registration has been successful");
             clearAll();
 //            txtReservationNo.setText(generateId());

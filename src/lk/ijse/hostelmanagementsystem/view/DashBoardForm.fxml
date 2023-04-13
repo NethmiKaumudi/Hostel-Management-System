@@ -52,7 +52,7 @@
                   </GridPane>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="280.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
+            <JFXButton layoutX="6.0" layoutY="280.0" onAction="#btnRoomOnAction" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
                <graphic>
                   <GridPane prefHeight="66.0" prefWidth="328.0">
                      <columnConstraints>
@@ -80,7 +80,7 @@
                   </GridPane>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="382.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
+            <JFXButton layoutX="6.0" layoutY="382.0" onAction="#btnReservationOnAction" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
                <graphic>
                   <GridPane prefHeight="66.0" prefWidth="344.0">
                      <columnConstraints>
@@ -117,7 +117,7 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <JFXButton layoutX="6.0" layoutY="482.0" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
+            <JFXButton layoutX="6.0" layoutY="482.0" onAction="#btnSettngOnAction" prefHeight="57.0" prefWidth="352.0" styleClass="DashBord-button">
                <graphic>
                   <GridPane prefHeight="66.0" prefWidth="344.0">
                      <columnConstraints>

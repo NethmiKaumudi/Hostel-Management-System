@@ -11,9 +11,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
 import lk.ijse.hostelmanagementsystem.Service.custom.impl.UserServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.UserDTO;
+import lk.ijse.hostelmanagementsystem.util.Navigation;
+import lk.ijse.hostelmanagementsystem.util.Routes;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -21,7 +24,7 @@ import java.util.regex.Pattern;
 
 public class SignUpFormController {
     UserDTO userDTO = new UserDTO();
-    UserService userService;
+    UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
     @FXML
     private AnchorPane pane2;
     @FXML
@@ -64,7 +67,6 @@ public class SignUpFormController {
         String PassWord = txtPassWord.getText();
         userDTO.setUserName(UserName);
         userDTO.setPassWord(PassWord);
-        userService = UserServiceimpl.getInstance();
         String save = userService.save(userDTO);
         if (save != null) {
             new Alert(Alert.AlertType.CONFIRMATION, "User Added!").showAndWait();
@@ -73,13 +75,13 @@ public class SignUpFormController {
             new Alert(Alert.AlertType.ERROR, "Not Added!").show();
 
         }
-        Stage stage = (Stage) pane2.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
-        stage.centerOnScreen();
-        Stage stage2 = (Stage) pane2.getScene().getWindow();
-        stage2.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/ReservationForm.fxml"))));
-        stage2.centerOnScreen();
-
+//        Stage stage = (Stage) pane2.getScene().getWindow();
+//        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/DashBoardForm.fxml"))));
+//        stage.centerOnScreen();
+//        Stage stage2 = (Stage) pane2.getScene().getWindow();
+//        stage2.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk/ijse/hostelmanagementsystem/view/ReservationForm.fxml"))));
+//        stage2.centerOnScreen();
+        Navigation.navigate(Routes.DASHBOARDFORM,pane2);
 
         clearFields();
     }

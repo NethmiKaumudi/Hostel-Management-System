@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.StudentService;
 import lk.ijse.hostelmanagementsystem.Service.custom.impl.StudentServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
@@ -33,7 +34,9 @@ public class StudentSaveFormController implements Initializable {
     public JFXTextField txtCNo;
     public TableView<StudentDTO> tblStudent;
     StudentDTO studentDTO = new StudentDTO();
-    StudentService studentService;
+//    StudentService studentService;
+StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
+
     @FXML
     private AnchorPane pane;
     @FXML
@@ -163,7 +166,6 @@ public class StudentSaveFormController implements Initializable {
         studentDTO.setContactNo(contactNo);
         studentDTO.setDob(dob);
         studentDTO.setGender(gender);
-        studentService = StudentServiceimpl.getInstance();
         String save = studentService.save(studentDTO);
         if (save != null) {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Saved!").showAndWait();
@@ -186,7 +188,7 @@ public class StudentSaveFormController implements Initializable {
 
         // String gender=cmbGender.getGender();
         String gender = cmbGender.getValue();
-        studentService = StudentServiceimpl.getInstance();
+
         boolean update = studentService.update(new StudentDTO(sId, studentName, address, contactNo, dob, gender));
         if (update) {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Updated!").show();
@@ -200,7 +202,7 @@ public class StudentSaveFormController implements Initializable {
 
     public void DeletebtnOnAction(ActionEvent actionEvent) {
 
-        studentService = StudentServiceimpl.getInstance();
+
         studentDTO.setStudentId(txtsId.getText());
         boolean delete = studentService.delete(studentDTO);
         if (delete) {
@@ -219,7 +221,6 @@ public class StudentSaveFormController implements Initializable {
         btnSave.setDisable(true);
         btnUpdate.setDisable(false);
         btnDelete.setDisable(false);
-        studentService = StudentServiceimpl.getInstance();
         this.studentDTO = studentService.get(txtsId.getText());
         fillData();
 
@@ -267,7 +268,6 @@ public class StudentSaveFormController implements Initializable {
     }
 
     public void loadAllData() {
-        studentService = StudentServiceimpl.getInstance();
         tblStudent.setItems(studentService.getAllStudents());
     }
 

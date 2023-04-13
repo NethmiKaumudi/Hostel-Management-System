@@ -1,7 +1,7 @@
 package lk.ijse.hostelmanagementsystem.repository.custom.impl;
 
+import lk.ijse.hostelmanagementsystem.entity.Custom;
 import lk.ijse.hostelmanagementsystem.entity.Reservation;
-import lk.ijse.hostelmanagementsystem.projection.Custom;
 import lk.ijse.hostelmanagementsystem.repository.custom.PaymentRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -12,18 +12,9 @@ import java.util.List;
 
 public class PaymentRepositoryimpl implements PaymentRepository {
 
-    private static PaymentRepositoryimpl paymentRepositoryimpl;
-
-    //    ReservationService reservationService;
     private Session session;
 
-    private PaymentRepositoryimpl() {
-    }
 
-    public static PaymentRepositoryimpl getInstance() {
-        return paymentRepositoryimpl == null ? paymentRepositoryimpl = new PaymentRepositoryimpl() : paymentRepositoryimpl;
-    }
-//
 //    public List<Object[]> getAll() {
 //        Query query = session.createQuery("SELECT R FROM reservation AS R");
 //        return query.list();
@@ -73,14 +64,15 @@ public class PaymentRepositoryimpl implements PaymentRepository {
     public void setSession(Session session) {
         this.session = session;
     }
+
     public ArrayList<Custom> getAllPendingPaymentStudent() {
 //        Session session = FactoryConfiguration.getInstance().getSession();
 //        Transaction transaction = session.beginTransaction();
         try {
 
 
-            Query query = session.createQuery("SELECT s.sId,s.name,s.address,s.contactNo,s.dob,s.gender FROM\n" +
-                    "Student s INNER JOIN reservation r ON s.sId=r.Student.sId WHERE r.status=:status");
+            Query query = session.createQuery("SELECT s.studentId,s.name,s.address,s.contactNo,s.dob,s.gender FROM\n" +
+                    "Student s INNER JOIN reservation r ON s.studentId=r.Student.studentId WHERE r.status=:status");
             query.setParameter("status", "Pending payment");
             List<Object[]> list = query.list();
 //            transaction.commit();

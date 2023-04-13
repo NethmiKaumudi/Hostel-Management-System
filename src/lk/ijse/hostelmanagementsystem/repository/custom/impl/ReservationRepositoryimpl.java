@@ -11,17 +11,17 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class ReservationRepositoryimpl implements ReservationRepository {
-    private static ReservationRepositoryimpl reservationRepositoryimpl;
-
-    //    ReservationService reservationService;
+//    private static ReservationRepositoryimpl reservationRepositoryimpl;
+//
+//    //    ReservationService reservationService;
     private Session session;
-
-    private ReservationRepositoryimpl() {
-    }
-
-    public static ReservationRepositoryimpl getInstance() {
-        return reservationRepositoryimpl == null ? reservationRepositoryimpl = new ReservationRepositoryimpl() : reservationRepositoryimpl;
-    }
+//
+//    private ReservationRepositoryimpl() {
+//    }
+//
+//    public static ReservationRepositoryimpl getInstance() {
+//        return reservationRepositoryimpl == null ? reservationRepositoryimpl = new ReservationRepositoryimpl() : reservationRepositoryimpl;
+//    }
 
 
     @Override

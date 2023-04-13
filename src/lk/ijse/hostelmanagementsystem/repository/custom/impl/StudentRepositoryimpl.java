@@ -9,17 +9,17 @@ import java.io.IOException;
 import java.util.List;
 
 public class StudentRepositoryimpl implements StudentRepository {
-    private static StudentRepositoryimpl studentRepositoryimpl;
+//    private static StudentRepositoryimpl studentRepositoryimpl;
     private Session session;
-
-    private StudentRepositoryimpl() {
-
-    }
-
-    public static StudentRepositoryimpl getInstance() {
-        return studentRepositoryimpl == null ? studentRepositoryimpl = new StudentRepositoryimpl() : studentRepositoryimpl;
-    }
-
+//
+//    private StudentRepositoryimpl() {
+//
+//    }
+//
+//    public static StudentRepositoryimpl getInstance() {
+//        return studentRepositoryimpl == null ? studentRepositoryimpl = new StudentRepositoryimpl() : studentRepositoryimpl;
+//    }
+//
 
     @Override
     public String Save(Student entity) {

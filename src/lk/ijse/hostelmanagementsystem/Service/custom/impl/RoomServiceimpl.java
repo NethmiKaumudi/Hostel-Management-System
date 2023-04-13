@@ -6,8 +6,8 @@ import javafx.collections.ObservableList;
 import lk.ijse.hostelmanagementsystem.Service.custom.RoomService;
 import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
 import lk.ijse.hostelmanagementsystem.entity.Room;
+import lk.ijse.hostelmanagementsystem.repository.RepositoryFactory;
 import lk.ijse.hostelmanagementsystem.repository.custom.RoomRepository;
-import lk.ijse.hostelmanagementsystem.repository.custom.impl.RoomRepositoryimpl;
 import lk.ijse.hostelmanagementsystem.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,17 +17,10 @@ import java.util.List;
 
 public class RoomServiceimpl implements RoomService {
 
-    private static RoomServiceimpl roomServiceimpl;
-    RoomRepository roomRepository;
+    RoomRepository roomRepository = (RoomRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.ROOMREPOSITORY);
+
     private Session session;
 
-    private RoomServiceimpl() {
-        roomRepository = RoomRepositoryimpl.getInstance();
-    }
-
-    public static RoomServiceimpl getInstance() {
-        return roomServiceimpl == null ? roomServiceimpl = new RoomServiceimpl() : roomServiceimpl;
-    }
 
     @Override
     public String save(RoomDTO roomDTO) {

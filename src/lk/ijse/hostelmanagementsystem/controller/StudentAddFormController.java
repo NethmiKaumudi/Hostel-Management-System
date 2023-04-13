@@ -11,8 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.StudentService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.StudentServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 
 import java.time.LocalDate;
@@ -22,7 +22,9 @@ import java.util.regex.Pattern;
 public class StudentAddFormController {
 
     StudentDTO studentDTO = new StudentDTO();
-    StudentService studentService = null;
+    //    StudentService studentService = null;
+    StudentService studentService = (StudentService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.STUDENTSERVICE);
+
     @FXML
     private AnchorPane pane;
     @FXML
@@ -54,7 +56,7 @@ public class StudentAddFormController {
     private Matcher contctNoMatcher;
 
     public void initialize() {
-        studentService = StudentServiceimpl.getInstance();
+//        studentService = StudentServiceimpl.getInstance();
         initUi();
         generateId();
         setPatterns();
@@ -143,7 +145,6 @@ public class StudentAddFormController {
         studentDTO.setContactNo(contactNo);
         studentDTO.setDob(dob);
         studentDTO.setGender(gender);
-        studentService = StudentServiceimpl.getInstance();
         String save = studentService.save(studentDTO);
         if (save != null) {
             new Alert(Alert.AlertType.CONFIRMATION, "New Student Added!").showAndWait();

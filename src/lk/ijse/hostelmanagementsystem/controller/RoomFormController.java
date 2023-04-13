@@ -14,8 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.RoomService;
-import lk.ijse.hostelmanagementsystem.Service.custom.impl.RoomServiceimpl;
 import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
 
 import java.net.URL;
@@ -25,7 +25,9 @@ import java.util.regex.Pattern;
 
 public class RoomFormController implements Initializable {
     RoomDTO roomDTO = new RoomDTO();
-    RoomService roomService;
+//    RoomService roomService;
+RoomService roomService = (RoomService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.ROOMSERVICE);
+
     @FXML
     private AnchorPane pane;
 
@@ -129,7 +131,6 @@ public class RoomFormController implements Initializable {
 
 
     private void loadAlldata() {
-        roomService = RoomServiceimpl.getInstance();
         tblRoom.setItems(roomService.getAllRooms());
     }
 
@@ -165,7 +166,6 @@ public class RoomFormController implements Initializable {
 
     @FXML
     void deletebtnOnAction(ActionEvent event) {
-        roomService = RoomServiceimpl.getInstance();
         roomDTO.setRoomTypeId(cmbRoomTypeId.getValue());
         boolean delete = roomService.delete(roomDTO);
         if (delete) {
@@ -194,7 +194,6 @@ public class RoomFormController implements Initializable {
         roomDTO.setType(type);
         roomDTO.setKeyMoney(KeyMoney);
         roomDTO.setQty(quantity);
-        roomService = RoomServiceimpl.getInstance();
         String save = roomService.save(roomDTO);
         if (save != null) {
             new Alert(Alert.AlertType.CONFIRMATION, "Room Saved!").showAndWait();
@@ -212,7 +211,6 @@ public class RoomFormController implements Initializable {
         btnSave.setDisable(true);
         btnUpdate.setDisable(false);
         btnDelete.setDisable(false);
-        roomService = RoomServiceimpl.getInstance();
         this.roomDTO = roomService.get(cmbRoomTypeId.getValue());
         fillData();
     }
@@ -241,7 +239,6 @@ public class RoomFormController implements Initializable {
         String type = cmbRoomType.getValue();
         String KeyMoney = txtKeyMoney.getText();
         int quantity = Integer.parseInt(txtQuantity.getText());
-        roomService = RoomServiceimpl.getInstance();
         boolean update = roomService.update(new RoomDTO(rId, type, KeyMoney, quantity));
         if (update) {
             new Alert(Alert.AlertType.CONFIRMATION, "Room Updated!").show();

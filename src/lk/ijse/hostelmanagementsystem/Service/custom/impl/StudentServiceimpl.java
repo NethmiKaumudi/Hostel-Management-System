@@ -5,8 +5,8 @@ import javafx.collections.ObservableList;
 import lk.ijse.hostelmanagementsystem.Service.custom.StudentService;
 import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 import lk.ijse.hostelmanagementsystem.entity.Student;
+import lk.ijse.hostelmanagementsystem.repository.RepositoryFactory;
 import lk.ijse.hostelmanagementsystem.repository.custom.StudentRepository;
-import lk.ijse.hostelmanagementsystem.repository.custom.impl.StudentRepositoryimpl;
 import lk.ijse.hostelmanagementsystem.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,18 +15,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class StudentServiceimpl implements StudentService {
-    private static StudentServiceimpl studentServiceimpl;
-    StudentRepository studentRepository;
+
+
+    StudentRepository studentRepository = (StudentRepository) RepositoryFactory.getRepositoryFactory().getRepository(RepositoryFactory.RepositoryTypes.STUDENTREPOSITORY);
+
     private Session session;
-
-    public StudentServiceimpl() {
-        studentRepository = StudentRepositoryimpl.getInstance();
-    }
-
-
-    public static StudentServiceimpl getInstance() {
-        return studentServiceimpl == null ? studentServiceimpl = new StudentServiceimpl() : studentServiceimpl;
-    }
 
 
     @Override
@@ -114,8 +107,9 @@ public class StudentServiceimpl implements StudentService {
             return false;
         }
     }
+
     public String generateNewId() {
-        String newStudentId ="S001";
+        String newStudentId = "S001";
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -125,29 +119,30 @@ public class StudentServiceimpl implements StudentService {
         List<String> list = studentRepository.getNewId();
 
         for (String id : list) {
-            if (id!=null){
+            if (id != null) {
                 int num = Integer.valueOf(id.substring(1));
                 num++;
 
-                if (num<=9){
-                    newStudentId="S00"+num;
-                }else if (num>9&&num<100){
-                    newStudentId="S0"+num;
-                }else if (num>=100){
-                    newStudentId="S"+num;
+                if (num <= 9) {
+                    newStudentId = "S00" + num;
+                } else if (num > 9 && num < 100) {
+                    newStudentId = "S0" + num;
+                } else if (num >= 100) {
+                    newStudentId = "S" + num;
                 }
             }
         }
 
         transaction.commit();
         session.close();
-        return  newStudentId;
+        return newStudentId;
     }
+
     public ObservableList<String> studentIdList() throws IOException {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        ObservableList<String> idList =FXCollections.observableArrayList();
+        ObservableList<String> idList = FXCollections.observableArrayList();
 
 //        String hql="SELECT studentId FROM Student";
 //        List<String> list = session.createQuery(hql).list();

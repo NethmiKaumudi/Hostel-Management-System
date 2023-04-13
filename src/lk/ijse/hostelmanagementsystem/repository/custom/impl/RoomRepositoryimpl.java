@@ -11,18 +11,18 @@ import java.util.List;
 
 public class RoomRepositoryimpl implements RoomRepository {
 
-    private static RoomRepositoryimpl roomRepositoryimpl;
+//    private static RoomRepositoryimpl roomRepositoryimpl;
     private Session session;
-
-
-    private RoomRepositoryimpl() {
-    }
-
-    public static RoomRepositoryimpl getInstance() {
-        return null == roomRepositoryimpl
-                ? roomRepositoryimpl = new RoomRepositoryimpl()
-                : roomRepositoryimpl;
-    }
+//
+//
+//    private RoomRepositoryimpl() {
+//    }
+//
+//    public static RoomRepositoryimpl getInstance() {
+//        return null == roomRepositoryimpl
+//                ? roomRepositoryimpl = new RoomRepositoryimpl()
+//                : roomRepositoryimpl;
+//    }
 
 
     @Override

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import lk.ijse.hostelmanagementsystem.Service.ServiceFactory;
 import lk.ijse.hostelmanagementsystem.Service.custom.UserService;
 import lk.ijse.hostelmanagementsystem.Service.custom.impl.StudentServiceimpl;
 import lk.ijse.hostelmanagementsystem.Service.custom.impl.UserServiceimpl;
@@ -18,7 +19,9 @@ import java.util.regex.Pattern;
 
 public class SettingController {
     UserDTO userDTO=new UserDTO();
-    UserService userService;
+//    UserService userService;
+UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
+
     @FXML
     private AnchorPane pane;
 
@@ -41,7 +44,6 @@ public class SettingController {
     private Label lblrenewPassword;
 
     public void initialize(){
-        userService= UserServiceimpl.getInstance();
     }
 
     @FXML

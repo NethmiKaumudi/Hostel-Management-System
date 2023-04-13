@@ -1,12 +1,11 @@
 package lk.ijse.hostelmanagementsystem.projection;
 
-import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 import lk.ijse.hostelmanagementsystem.entity.Room;
 import lk.ijse.hostelmanagementsystem.entity.Student;
 
 import java.time.LocalDate;
 
-public class Custom {
+public class CustomDTO {
     private String res_id;
     private LocalDate date;
     private Student student;
@@ -25,14 +24,10 @@ public class Custom {
     private String userName;
     private String password;
 
-    public Custom() {
+    public CustomDTO(String studentId, String name, String address, String contactNo, LocalDate dob, String gender) {
     }
 
-
-    public Custom(String s, String s1, String s2, String s3, LocalDate localDate, String s4) {
-    }
-
-    public Custom(String res_id, LocalDate date, Student student, Room room, String status, String room_type_id, String type, String key_money, int qty, String studentId, String name, String address, String contactNo, LocalDate dob, String gender, String userName, String password) {
+    public CustomDTO(String res_id, LocalDate date, Student student, Room room, String status, String room_type_id, String type, String key_money, int qty, String studentId, String name, String address, String contactNo, LocalDate dob, String gender, String userName, String password) {
         this.res_id = res_id;
         this.date = date;
         this.student = student;
