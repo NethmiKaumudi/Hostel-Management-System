@@ -39,10 +39,17 @@ public class UserServiceimpl implements UserService {
 
     public UserDTO get(String userName) {
         session = SessionFactoryConfig.getInstance().getSession();
-        userRepository.setSession(session);
-        User user = userRepository.get(userName);
-        session.close();
-        return user.toDto();
+
+        try {
+            userRepository.setSession(session);
+            User user = userRepository.get(userName);
+            return user.toDto();
+        } catch (NullPointerException e) {
+            return null;
+        } finally {
+            session.close();
+        }
+
     }
 
     public boolean update(UserDTO userDTO) {

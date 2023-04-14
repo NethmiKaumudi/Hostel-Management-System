@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 public class ReservationTM {
     private LocalDate date;
-    private String sId;
-    private String rId;
+    private String student_Id;
+    private String room_Id;
     private String resNo;
     private String status;
     private Button delete;
@@ -18,46 +18,11 @@ public class ReservationTM {
 
     public ReservationTM(LocalDate date, String sId, String rId, String resNo, String status, Button delete) {
         this.date = date;
-        this.sId = sId;
-        this.rId = rId;
+        this.student_Id = sId;
+        this.room_Id = rId;
         this.resNo = resNo;
         this.status = status;
         this.delete = delete;
-    }
-
-    public ReservationTM(LocalDate date,  String student_id, String room_id,String res_id, String status) {
-        this.date=date;
-        this.sId=student_id;
-        this.rId=room_id;
-        this.resNo=res_id;
-        this.status=status;
-    }
-
-    //    public ReservationTM(String resNo, LocalDate date, String getrId, String getsId, String status) {
-//    }
-
-    public String getResNo() {
-        return resNo;
-    }
-
-    public void setResNo(String resNo) {
-        this.resNo = resNo;
-    }
-
-    public String getsId() {
-        return sId;
-    }
-
-    public void setsId(String sId) {
-        this.sId = sId;
-    }
-
-    public String getrId() {
-        return rId;
-    }
-
-    public void setrId(String rId) {
-        this.rId = rId;
     }
 
     public LocalDate getDate() {
@@ -66,6 +31,30 @@ public class ReservationTM {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getStudent_Id() {
+        return student_Id;
+    }
+
+    public void setStudent_Id(String student_Id) {
+        this.student_Id = student_Id;
+    }
+
+    public String getRoom_Id() {
+        return room_Id;
+    }
+
+    public void setRoom_Id(String room_Id) {
+        this.room_Id = room_Id;
+    }
+
+    public String getResNo() {
+        return resNo;
+    }
+
+    public void setResNo(String resNo) {
+        this.resNo = resNo;
     }
 
     public String getStatus() {
@@ -87,10 +76,10 @@ public class ReservationTM {
     @Override
     public String toString() {
         return "ReservationTM{" +
-                "resNo='" + resNo + '\'' +
-                ", sId='" + sId + '\'' +
-                ", rId='" + rId + '\'' +
-                ", date=" + date +
+                "date=" + date +
+                ", sId='" + student_Id + '\'' +
+                ", rId='" + room_Id + '\'' +
+                ", resNo='" + resNo + '\'' +
                 ", status='" + status + '\'' +
                 ", delete=" + delete +
                 '}';

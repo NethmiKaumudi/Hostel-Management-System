@@ -89,13 +89,13 @@ public class ReservationFormController {
 
     private void setCellValueFactory() {
         colDate.setCellValueFactory(new PropertyValueFactory("date"));
-        colSId.setCellValueFactory(new PropertyValueFactory("sId"));
-        colRId.setCellValueFactory(new PropertyValueFactory("rId"));
+        colSId.setCellValueFactory(new PropertyValueFactory("student_Id"));
+        colRId.setCellValueFactory(new PropertyValueFactory("room_Id"));
         colResNo.setCellValueFactory(new PropertyValueFactory("resNo"));
         colStatus.setCellValueFactory(new PropertyValueFactory("status"));
 //        ColQty.setCellValueFactory(new PropertyValueFactory("productQty"));
         colOption.setCellValueFactory(new PropertyValueFactory("delete"));
-
+        tblReservation.setItems(obList);
 
     }
 
@@ -122,7 +122,8 @@ public class ReservationFormController {
             }
         });
         obList.add(new ReservationTM(date, student_id, room_id, res_id, status, btnDelete));
-        tblReservation.setItems(obList);
+//        tblReservation.setItems(obList);
+        System.out.println(obList);
         setCellValueFactory();
 //        clearAll();
 

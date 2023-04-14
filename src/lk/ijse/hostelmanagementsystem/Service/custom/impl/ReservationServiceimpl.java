@@ -95,21 +95,17 @@ public class ReservationServiceimpl implements ReservationService {
 
     public List<ReservationDTO> getAll() {
         Session session = SessionFactoryConfig.getInstance().getSession();
-        //Transaction transaction=session.beginTransaction();
         try {
-//            NativeQuery nativeQuery = session.createSQLQuery("SELECT * FROM reservation");
             reservationRepository.setSession(session);
             List<Reservation> reservations = reservationRepository.getAll();
             List<ReservationDTO> list = new ArrayList<>();
             for (Reservation reservation : reservations) {
-//                Date date = reservation.getDate();
                 list.add(new ReservationDTO(reservation.getReservationId(), reservation.getStudents().getStudentId(), reservation.getRooms().getRoomTypeId(), reservation.getDate(), reservation.getStatus()));
             }
-            //transaction.commit();
+
             session.close();
             return list;
         } catch (Exception e) {
-            // transaction.rollback();
             session.close();
             e.printStackTrace();
             return null;

@@ -55,30 +55,43 @@ public class LoginFormController {
 //        String pswdFildPassword = txtShowPassWord.getText();
         clearAll();
         try {
+            System.out.println(userName);
             UserDTO user = userService.get(userName);
-            if (password.equals(user.getPassWord()) /*|| pswdFildPassword.equals(user.getPassWord())*/) {
-                if (userName.equals(user.getUserName())) {
-
-                    Navigation.navigate(Routes.DASHBOARDFORM, pane2);
-                } else {
+            if (txtnShowPassword.getText().equals("") && txtUserName.getText().equals("")) {
+                txtUserName.requestFocus();
+                txtUserName.setFocusColor(RED);
+                txtnShowPassword.requestFocus();
+                txtnShowPassword.setFocusColor(RED);
+                new Alert(Alert.AlertType.WARNING, "Please Enter Username and PassWord First").show();
+            } else {
+                if (user == null) {
                     txtUserName.requestFocus();
                     txtUserName.setFocusColor(RED);
                     lbluserName.setText("Username does not match");
-                }
-            } else {
+                } else {
+                    if (password.equals(user.getPassWord()) /*|| pswdFildPassword.equals(user.getPassWord())*/) {
+                        if (userName.equals(user.getUserName())) {
 
-                txtUserName.requestFocus();
-                txtUserName.setFocusColor(RED);
-                lbluserName.setText("Username does not match");
+                            Navigation.navigate(Routes.DASHBOARDFORM, pane2);
+                            new Alert(Alert.AlertType.CONFIRMATION, "WELCOME!").show();
+
+                        } else {
+                            txtUserName.requestFocus();
+                            txtUserName.setFocusColor(RED);
+                            lbluserName.setText("Username does not match");
+                        }
+                    } else {
+
+                        txtnShowPassword.requestFocus();
+                        txtnShowPassword.setFocusColor(RED);
+                        lblPassWord.setText("Password does not match");
+                    }
+                }
             }
-            new Alert(Alert.AlertType.CONFIRMATION, "WELCOME!").show();
+
 
         } catch (Exception e) {
-            txtUserName.requestFocus();
-            txtUserName.setFocusColor(RED);
-            txtnShowPassword.requestFocus();
-            txtnShowPassword.setFocusColor(RED);
-            new Alert(Alert.AlertType.WARNING, "Please Enter Username and PassWord First").show();
+            System.out.println(e);
         }
     }
 
