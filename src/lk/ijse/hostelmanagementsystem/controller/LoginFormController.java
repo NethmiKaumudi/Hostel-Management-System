@@ -1,5 +1,6 @@
 package lk.ijse.hostelmanagementsystem.controller;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,38 +20,32 @@ import java.io.IOException;
 import static javafx.scene.paint.Color.RED;
 
 public class LoginFormController {
+    String password = null;
     //    UserDTO userDTO = new UserDTO();
 //    UserService userService;
     private UserService userService = (UserService) ServiceFactory.getServiceFactory().getService(ServiceFactory.ServiceTypes.USERSERVICE);
-
     @FXML
     private AnchorPane pane2;
-
     @FXML
     private Label lbluserName;
-
     @FXML
     private Label lblPassWord;
-
     @FXML
     private JFXTextField txtUserName;
-
-
+    //    @FXML
+//    private JFXTextField txtnShowPassword;
     @FXML
-    private JFXTextField txtnShowPassword;
-
+    private JFXPasswordField txtnShowPassword;
     @FXML
     private JFXTextField txtShowPassWord;
-
     @FXML
     private ImageView imgVisible;
-
     @FXML
     private ImageView imgInvisible;
 
     @FXML
     void LoginbtnOnAction(ActionEvent event) {
-        String password = txtShowPassWord.getText();
+        String password = txtnShowPassword.getText();
         String userName = txtUserName.getText();
 //        String pswdFildPassword = txtShowPassWord.getText();
         clearAll();
@@ -95,37 +90,34 @@ public class LoginFormController {
         }
     }
 
-
     public void imgViewOnAction(MouseEvent mouseEvent) {
         imgVisible.setVisible(false);
-        txtShowPassWord.setVisible(true);
         imgInvisible.setVisible(true);
+        txtShowPassWord.setVisible(true);
         txtnShowPassword.setVisible(false);
-        txtShowPassWord.setText(txtShowPassWord.getText());
-        txtShowPassWord.requestFocus();
+        password = txtnShowPassword.getText();
+        txtShowPassWord.setText(password);
+
     }
 
     public void imginvisibleOnAction(MouseEvent mouseEvent) {
+
         imgVisible.setVisible(true);
-        txtShowPassWord.setVisible(false);
         imgInvisible.setVisible(false);
+        txtShowPassWord.setVisible(false);
         txtnShowPassword.setVisible(true);
-        StringBuilder hiddenPass = new StringBuilder();
-        for (char char1 : txtShowPassWord.getText().toCharArray()) {
-            hiddenPass = new StringBuilder(hiddenPass.append("*"));
-        }
-        txtnShowPassword.setText(hiddenPass.toString());
-        txtnShowPassword.requestFocus();
+        password = txtShowPassWord.getText();
+        txtnShowPassword.setText(password);
+
 
     }
 
     public void initialize() {
 
+        imgInvisible.setVisible(false);
+        imgVisible.setVisible(true);
+        txtShowPassWord.setVisible(false);
 
-        imgVisible.setVisible(false);
-        txtShowPassWord.setVisible(true);
-        imgInvisible.setVisible(true);
-        txtnShowPassword.setVisible(false);
     }
 
 

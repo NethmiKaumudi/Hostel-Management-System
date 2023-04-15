@@ -55,27 +55,35 @@ public class SignUpFormController {
 
     @FXML
     void SignUpbtnOnAction(ActionEvent event) throws IOException {
-        if (userNameMatcher.matches()) {
-            if (pwMatcher.matches()) {
+        if(txtUserName.getText().isEmpty()&&txtPassWord.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR, "Added Data First!").show();
+
+        }else{
+            if (userNameMatcher.matches()) {
+                if (pwMatcher.matches()) {
+                }
             }
+
+
+
+            String UserName = txtUserName.getText();
+            String PassWord = txtPassWord.getText();
+            userDTO.setUserName(UserName);
+            userDTO.setPassWord(PassWord);
+            String save = userService.save(userDTO);
+            if (save != null) {
+                new Alert(Alert.AlertType.CONFIRMATION, "User Added!").showAndWait();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Not Added!").show();
+
+            }
+
+            Navigation.navigate(Routes.DASHBOARDFORM,pane2);
+
+            clearFields();
         }
 
-        String UserName = txtUserName.getText();
-        String PassWord = txtPassWord.getText();
-        userDTO.setUserName(UserName);
-        userDTO.setPassWord(PassWord);
-        String save = userService.save(userDTO);
-        if (save != null) {
-            new Alert(Alert.AlertType.CONFIRMATION, "User Added!").showAndWait();
-
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Not Added!").show();
-
-        }
-
-        Navigation.navigate(Routes.DASHBOARDFORM,pane2);
-
-        clearFields();
     }
 
     private void clearFields() {
