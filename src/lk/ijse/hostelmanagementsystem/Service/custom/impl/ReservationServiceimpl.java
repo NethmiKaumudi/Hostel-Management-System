@@ -42,9 +42,6 @@ public class ReservationServiceimpl implements ReservationService {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-//        String sql="SELECT reservation_id FROM reservation ORDER BY reservation_id DESC LIMIT 1";
-//        List<String> list = session.createSQLQuery(sql).list();
-
         reservationRepository.setSession(session);
         List<String> list = reservationRepository.getNewId();
 
@@ -67,21 +64,12 @@ public class ReservationServiceimpl implements ReservationService {
         session.close();
 
         return newId;
-//        Session session = SessionFactoryConfig.getInstance().getSession();
-//        String sqlQuery = "SELECT r.res_id FROM reservation AS r ORDER BY res_id DESC";
-//        Query query = session.createQuery(sqlQuery);
-//        List list = query.list();
-//        session.close();
-//        if (list.size() > 0) {
-//            return (String) list.get(0);
-//        }
-//        return null;
+
     }
 
     public int getNotAvailableRoomCount(String rid) {
         Session session = SessionFactoryConfig.getInstance().getSession();
         try {
-//            Query query = session.createQuery("SELECT COUNT(*) FROM Reservation r WHERE r.room.room_type_id=:room_type_id");
             reservationRepository.setSession(session);
             Long count = reservationRepository.getNotAvailableRoomCount(rid);
             session.close();

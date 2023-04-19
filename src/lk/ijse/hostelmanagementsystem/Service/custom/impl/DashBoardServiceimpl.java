@@ -22,7 +22,6 @@ public class DashBoardServiceimpl implements DashboardService {
     @Override
     public Long getPendingPaymentCount() {
         session = SessionFactoryConfig.getInstance().getSession();
-        //.setSession(session);
         paymentRepository.setSession(session);
         Long allPendingPaymentCount = paymentRepository.getAllPendingPaymentCount();
         if(allPendingPaymentCount ==null){
@@ -33,7 +32,7 @@ public class DashBoardServiceimpl implements DashboardService {
     }
 
     @Override
-    public int getRegisteredStudent() throws IOException {
+    public int getRegisteredStudent() {
         session = SessionFactoryConfig.getInstance().getSession();
         studentRepository.setSession(session);
         return studentRepository.getAllStudents().size();

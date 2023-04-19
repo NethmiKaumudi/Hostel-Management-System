@@ -6,9 +6,11 @@ import lk.ijse.hostelmanagementsystem.repository.CrudRepository;
 import java.io.IOException;
 import java.util.List;
 
-public interface StudentRepository extends CrudRepository<Student,String> {
+public interface StudentRepository extends CrudRepository<Student, String> {
     List<Student> getAllStudents();
-    public List<String> getNewId();
-    public List<String> getAllStudentIds() throws IOException ;
 
-    }
+    List<String> getNewId();
+
+    List<String> getAllStudentIds() throws IOException;
+
+}

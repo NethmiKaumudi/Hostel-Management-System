@@ -113,8 +113,6 @@ public class StudentServiceimpl implements StudentService {
         Session session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-//        String sql="SELECT sId FROM student ORDER BY sId DESC LIMIT 1";
-//        List<String> list = session.createSQLQuery(sql).list();
         studentRepository.setSession(session);
         List<String> list = studentRepository.getNewId();
 
@@ -143,9 +141,6 @@ public class StudentServiceimpl implements StudentService {
         Transaction transaction = session.beginTransaction();
 
         ObservableList<String> idList = FXCollections.observableArrayList();
-
-//        String hql="SELECT studentId FROM Student";
-//        List<String> list = session.createQuery(hql).list();
         studentRepository.setSession(session);
         List<String> list = studentRepository.getAllStudentIds();
         for (String id : list) {

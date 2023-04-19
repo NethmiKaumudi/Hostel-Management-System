@@ -9,17 +9,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class StudentRepositoryimpl implements StudentRepository {
-//    private static StudentRepositoryimpl studentRepositoryimpl;
     private Session session;
-//
-//    private StudentRepositoryimpl() {
-//
-//    }
-//
-//    public static StudentRepositoryimpl getInstance() {
-//        return studentRepositoryimpl == null ? studentRepositoryimpl = new StudentRepositoryimpl() : studentRepositoryimpl;
-//    }
-//
+
 
     @Override
     public String Save(Student entity) {
@@ -54,23 +45,18 @@ public class StudentRepositoryimpl implements StudentRepository {
 
     @Override
     public List<Student> getAllStudents() {
-        String sqlQuery = "FROM Student";
-        Query query = session.createQuery(sqlQuery);
+        String q = "FROM Student";
+        Query query = session.createQuery(q);
         List list = query.list();
-//        session.close();
         return list;
     }
 
     public List<String> getNewId() {
-//        return studentService.generateNewId();
         String sql="SELECT sId FROM student ORDER BY sId DESC LIMIT 1";
         return session.createSQLQuery(sql).list();
     }
 
-    //    @Override
-//    public String getStudentName(String id) throws IOException {
-//        return StudentService.getName(id);
-//    }
+
     public List<String> getAllStudentIds() throws IOException {
         String hql="SELECT studentId FROM Student";
         return session.createQuery(hql).list();

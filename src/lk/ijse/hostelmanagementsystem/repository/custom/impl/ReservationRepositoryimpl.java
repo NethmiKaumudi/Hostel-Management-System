@@ -11,17 +11,8 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class ReservationRepositoryimpl implements ReservationRepository {
-//    private static ReservationRepositoryimpl reservationRepositoryimpl;
-//
-//    //    ReservationService reservationService;
     private Session session;
-//
-//    private ReservationRepositoryimpl() {
-//    }
-//
-//    public static ReservationRepositoryimpl getInstance() {
-//        return reservationRepositoryimpl == null ? reservationRepositoryimpl = new ReservationRepositoryimpl() : reservationRepositoryimpl;
-//    }
+
 
 
     @Override
@@ -57,7 +48,6 @@ public class ReservationRepositoryimpl implements ReservationRepository {
     }
 
     public Long getNotAvailableRoomCount(String rid) {
-//        return reservationDAO.getNotAvailableRoomCount(rid);
         Query query = session.createQuery("SELECT COUNT(R) FROM reservation AS R WHERE R.rooms.id=:room_id");
         query.setParameter("room_id", rid);
         return (Long) query.uniqueResult();
@@ -69,17 +59,6 @@ public class ReservationRepositoryimpl implements ReservationRepository {
         return query.list();
 
     }
-   // public RoomDTO getRoom(String room_type_id) {
-//        Room room = session.get(room_type_id);
-//        return new RoomDTO(
-//                room.getRoomTypeId(),
-//                room.getType(),
-//                room.getKeyMoney(),
-//                room.getQty()
-//        );
-   // }
-//   public Room get(String rId) {
-//        return session.get(Room.class, rId);
-//   }
+
 
 }

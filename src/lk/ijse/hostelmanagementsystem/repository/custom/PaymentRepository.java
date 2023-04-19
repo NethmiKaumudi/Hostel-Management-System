@@ -7,8 +7,7 @@ import lk.ijse.hostelmanagementsystem.repository.CrudRepository;
 import java.util.List;
 
 public interface PaymentRepository extends CrudRepository<Reservation, String> {
-    //    public List<Object[]> getAll();
-    public List<StudentDTO> getAllPendingPaymentStudent();
+    List<StudentDTO> getAllPendingPaymentStudent();
 
-    public Long getAllPendingPaymentCount();
+    Long getAllPendingPaymentCount();
 }

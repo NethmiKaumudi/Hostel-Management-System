@@ -6,7 +6,7 @@ import lk.ijse.hostelmanagementsystem.dto.UserDTO;
 import lk.ijse.hostelmanagementsystem.entity.User;
 
 public interface UserService extends SuperService {
-    public String save(UserDTO userDTO);
-    public UserDTO get(String userName);
-    public boolean update(UserDTO userDTO) ;
+     String save(UserDTO userDTO);
+     UserDTO get(String userName);
+     boolean update(UserDTO userDTO) ;
     }
