@@ -2,6 +2,9 @@ package lk.ijse.hostelmanagementsystem.entity;
 
 import lk.ijse.hostelmanagementsystem.dto.RoomDTO;
 import lombok.*;
+import org.hibernate.annotations.Cache;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +14,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 public class Room {
     @Id

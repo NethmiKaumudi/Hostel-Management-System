@@ -2,6 +2,8 @@ package lk.ijse.hostelmanagementsystem.entity;
 
 import lk.ijse.hostelmanagementsystem.dto.StudentDTO;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,7 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
 
 public class Student {
