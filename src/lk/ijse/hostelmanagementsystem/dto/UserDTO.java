@@ -1,42 +1,19 @@
 package lk.ijse.hostelmanagementsystem.dto;
 
 import lk.ijse.hostelmanagementsystem.entity.User;
+import lombok.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@Data
 
 public class UserDTO {
     private String UserName;
     private String PassWord;
 
-    public UserDTO() {
-    }
-
-    public UserDTO(String userName, String passWord) {
-        UserName = userName;
-        PassWord = passWord;
-    }
-
-    public String getPassWord() {
-        return PassWord;
-    }
-
-    public void setPassWord(String passWord) {
-        PassWord = passWord;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String userName) {
-        UserName = userName;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "UserName='" + UserName + '\'' +
-                ", PassWord='" + PassWord + '\'' +
-                '}';
-    }
 
     public  User toEntity() {
 

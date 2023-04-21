@@ -93,7 +93,6 @@ public class ReservationFormController {
         colRId.setCellValueFactory(new PropertyValueFactory("room_Id"));
         colResNo.setCellValueFactory(new PropertyValueFactory("resNo"));
         colStatus.setCellValueFactory(new PropertyValueFactory("status"));
-//        ColQty.setCellValueFactory(new PropertyValueFactory("productQty"));
         colOption.setCellValueFactory(new PropertyValueFactory("delete"));
         tblReservation.setItems(obList);
 
@@ -122,7 +121,6 @@ public class ReservationFormController {
             }
         });
         obList.add(new ReservationTM(date, student_id, room_id, res_id, status, btnDelete));
-//        tblReservation.setItems(obList);
         System.out.println(obList);
         setCellValueFactory();
 //        clearAll();
@@ -138,10 +136,9 @@ public class ReservationFormController {
         String room_id = cmbrId.getValue();
         javafx.scene.control.Button btnDelete = new Button("Delete");
 
-        boolean save = reservationService.save(new ReservationDTO(res_id, student_id, room_id, date, status));
+        boolean save = reservationService.save(new ReservationDTO(res_id, student_id,room_id,date,status));
         Alert alert;
         if (save) {
-//            tblReservation.getItems().add(new ReservationTM(date, student_id, room_id, res_id, status));
             alert = new Alert(Alert.AlertType.INFORMATION, "Registration has been successful");
             clearAll();
 //            txtReservationNo.setText(generateId());
@@ -153,7 +150,6 @@ public class ReservationFormController {
     }
 
     private void clearAll() {
-//        txtDate.setText(null);
         txtReservationNo.setText(null);
         txtStudentId.setText(null);
         cmbrId.getSelectionModel().clearSelection();

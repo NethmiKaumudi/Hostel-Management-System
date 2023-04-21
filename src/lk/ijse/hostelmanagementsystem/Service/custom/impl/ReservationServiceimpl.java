@@ -88,7 +88,7 @@ public class ReservationServiceimpl implements ReservationService {
             List<Reservation> reservations = reservationRepository.getAll();
             List<ReservationDTO> list = new ArrayList<>();
             for (Reservation reservation : reservations) {
-                list.add(new ReservationDTO(reservation.getReservationId(), reservation.getStudents().getStudentId(), reservation.getRooms().getRoomTypeId(), reservation.getDate(), reservation.getStatus()));
+                list.add(new ReservationDTO(reservation.getReservationId(), reservation.getStudents().getStudentId(), reservation.getRooms().getId(), reservation.getDate(), reservation.getStatus()));
             }
 
             session.close();

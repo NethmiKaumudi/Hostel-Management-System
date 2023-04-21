@@ -93,7 +93,6 @@ public class StudentSaveFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         getGender();
         setPatterns();
-        initUi();
         loadAllData();
         try {
             generateId();
@@ -131,21 +130,6 @@ public class StudentSaveFormController implements Initializable {
             txtdob.setValue(newValue.getDob());
             cmbGender.setValue(newValue.getGender());
         }
-    }
-
-    private void initUi() {
-        txtsId.setDisable(false);
-        txtstudentName.setDisable(true);
-        txtAddress.setDisable(true);
-        txtCNo.setDisable(true);
-        txtdob.setDisable(true);
-        cmbGender.setDisable(true);
-        txtsId.setEditable(false);
-        btnSave.setDisable(true);
-        btnDelete.setDisable(true);
-        btnUpdate.setDisable(true);
-
-
     }
 
 

@@ -38,8 +38,6 @@ public class PaymentRepositoryimpl implements PaymentRepository {
 
     public List<StudentDTO> getAllPendingPaymentStudent() {
         try {
-
-
             Query query = session.createQuery("SELECT new  lk.ijse.hostelmanagementsystem.dto.StudentDTO(s.studentId,s.name,s.address,s.contactNo,s.dob,s.gender)\n" +
                     "FROM Student AS s INNER JOIN reservation AS r ON s.studentId=r.students.studentId\n" +
                     "WHERE r.status=:status");

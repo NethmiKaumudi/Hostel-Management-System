@@ -1,6 +1,14 @@
 package lk.ijse.hostelmanagementsystem.dto;
 
 import lk.ijse.hostelmanagementsystem.entity.Room;
+import lombok.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@Data
 
 public class RoomDTO {
     private String RoomTypeId;
@@ -8,62 +16,10 @@ public class RoomDTO {
     private String keyMoney;
     private int qty;
 
-    public RoomDTO() {
-    }
-
-    public RoomDTO(String roomTypeId, String type, String keyMoney, int qty) {
-        RoomTypeId = roomTypeId;
-        this.type = type;
-        this.keyMoney = keyMoney;
-        this.qty = qty;
-    }
-
-
-    public String getRoomTypeId() {
-        return RoomTypeId;
-    }
-
-    public void setRoomTypeId(String roomTypeId) {
-        RoomTypeId = roomTypeId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getKeyMoney() {
-        return keyMoney;
-    }
-
-    public void setKeyMoney(String keyMoney) {
-        this.keyMoney = keyMoney;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    @Override
-    public String toString() {
-        return "RoomDTO{" +
-                "RoomTypeId='" + RoomTypeId + '\'' +
-                ", type='" + type + '\'' +
-                ", keyMoney='" + keyMoney + '\'' +
-                ", qty=" + qty +
-                '}';
-    }
 
     public Room toEntity() {
         Room room = new Room();
-        room.setRoomTypeId(this.RoomTypeId);
+        room.setId(RoomTypeId);
         room.setType(this.type);
         room.setKeyMoney(this.keyMoney);
         room.setQty(this.qty);
