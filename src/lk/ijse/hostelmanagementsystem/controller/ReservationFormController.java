@@ -172,7 +172,8 @@ public class ReservationFormController {
 
     @FXML
     void newStudentbtnOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Routes.STUDENTADDFORM,pane);
+        Navigation.popupNavigation("StudentAddForm.fxml");
+
     }
 
 

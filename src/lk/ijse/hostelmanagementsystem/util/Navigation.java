@@ -1,11 +1,14 @@
 package lk.ijse.hostelmanagementsystem.util;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class Navigation {
     private static AnchorPane pane;
@@ -32,10 +35,10 @@ public class Navigation {
                 window.setTitle("Reservation Form");
                 initUI("ReservationForm.fxml");
                 break;
-            case STUDENTADDFORM:
-                window.setTitle("Student add Form");
-                initUI("StudentAddForm.fxml");
-                break;
+//            case STUDENTADDFORM:
+//                window.setTitle("Student add Form");
+//                initUI("StudentAddForm.fxml");
+//                break;
             case SIGNUPFORM:
                 window.setTitle("SignUp Form");
                 initUI("SignUpForm.fxml");
@@ -48,6 +51,16 @@ public class Navigation {
                 new Alert(Alert.AlertType.ERROR, "Not suitable UI found!").show();
 
         }
+    }
+
+    public static void popupNavigation(String link) throws IOException {
+        URL resource = Navigation.class.getResource("/lk/ijse/hostelmanagementsystem/view/" + link);
+        Parent parent = FXMLLoader.load(resource);
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setAlwaysOnTop(true);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private static void initUI(String location) throws IOException {
