@@ -85,7 +85,7 @@ public class StudentAddFormController {
 //            System.out.println(txtUserName.getText());
             txtName.requestFocus();
             txtName.setFocusColor(Paint.valueOf("Red"));
-            lblAddress.setText("invalid Name");
+            lblName.setText("invalid Name");
         }
     }
 
